@@ -1,0 +1,121 @@
+@media screen and (max-width: 800px) {
+  .navbar ul {
+    flex-wrap: wrap;
+  }
+
+  .navbar-toggle {
+    display: block;
+  }
+
+  .navbar-links {
+    display: none;
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar-search {
+    display: none;
+    width: 100%;
+    text-align: center;
+  }
+
+  .active {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 1135px) {
+  .card {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .container {
+    width: 100%;
+  }
+
+  .card {
+    width: 80%;
+  }
+
+  .contact-form .half {
+    flex-direction: column;
+  }
+  .contact-form .half .item {
+    width: 100%;
+  }
+  .contact-form .action {
+    display: flex;
+    flex-direction: column;
+  }
+  .contact-form .action input {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 760px),
+  (min-device-width: 768px) and (max-device-width: 1024px) {
+  .deals-table,
+  .deals-table thead,
+  .deals-table tbody,
+  .deals-table th,
+  .deals-table td,
+  .deals-table tr {
+    display: block;
+  }
+
+  .deals-table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .deals-table tr {
+    margin: 0 0 1rem 0;
+  }
+
+  .deals-table tr:nth-child(odd), .deals-table tr:nth-child(odd) a {
+    background: var(--secondary-color);
+    color: var(--primary-text-color);
+  }
+
+  .deals-table td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  .deals-table td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 0;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+
+  .deals-table td:nth-of-type(1):before {
+    content: "Store";
+  }
+  .deals-table td:nth-of-type(2):before {
+    content: "Savings";
+  }
+  .deals-table td:nth-of-type(3):before {
+    content: "Price";
+  }
+  .deals-table td:nth-of-type(4):before {
+    content: "Title";
+  }
+  .deals-table td:nth-of-type(5):before {
+    content: "Deal Rating";
+  }
+  .deals-table td:nth-of-type(6):before {
+    content: "Last change";
+  }
+}
