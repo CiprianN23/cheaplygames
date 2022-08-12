@@ -1,31 +1,14 @@
-const formatter = new Intl.RelativeTimeFormat('en', {
-	numeric: 'auto',
-});
+import { formatTimeAgo } from './utils.js';
 
-const DIVISIONS = [
-	{ amount: 60, name: 'seconds' },
-	{ amount: 60, name: 'minutes' },
-	{ amount: 24, name: 'hours' },
-	{ amount: 7, name: 'days' },
-	{ amount: 4.34524, name: 'weeks' },
-	{ amount: 12, name: 'months' },
-	{ amount: Number.POSITIVE_INFINITY, name: 'years' },
-];
+let currentPage = 0;
 
-function formatTimeAgo(date) {
-	let duration = (date - new Date()) / 1000;
-
-	for (let i = 0; i <= DIVISIONS.length; i++) {
-		const division = DIVISIONS[i];
-		if (Math.abs(duration) < division.amount) {
-			return formatter.format(Math.round(duration), division.name);
-		}
-		duration /= division.amount;
-	}
+if (sessionStorage.getItem('currentPage')) {
+	// Restore the contents of the text field
+	currentPage = Number(sessionStorage.getItem('currentPage'));
 }
 
 let cheapSharkApiLink =
-  'https://www.cheapshark.com/api/1.0/deals?pageSize=15';
+  'https://www.cheapshark.com/api/1.0/deals?pageSize=16&onSale=1';
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -34,10 +17,57 @@ if (urlParams.has('storeID')) {
 	cheapSharkApiLink += '&storeID=' + urlParams.get('storeID');
 }
 
+if (urlParams.has('pageNumber')) {
+	cheapSharkApiLink += '&pageNumber=' + urlParams.get('pageNumber');
+}
+
 const dealsResponse = await fetch(cheapSharkApiLink);
 const dealsData = await dealsResponse.json();
 
-//let maxPages = responseData.headers.get("x-total-page-count");
+const maxPages = dealsResponse.headers.get('x-total-page-count');
+
+const previousPageButton = document.getElementById('prevPage');
+const nextPageButton = document.getElementById('nextPage');
+
+if (currentPage == 0) {
+	previousPageButton.style.visibility = 'hidden';
+} else {
+	previousPageButton.style.visibility = 'visible';
+}
+
+if (currentPage == maxPages) {
+	nextPageButton.style.visibility = 'hidden';
+} else {
+	nextPageButton.style.visibility = 'visible';
+}
+
+function prevPage() {
+	console.log('prev');
+	if (currentPage > 0) {
+		currentPage--;
+		sessionStorage.setItem('currentPage', currentPage);
+		changePage(currentPage);
+	}
+}
+
+function nextPage() {
+	console.log('next');
+	if (currentPage < maxPages) {
+		currentPage++;
+		sessionStorage.setItem('currentPage', currentPage);
+		changePage(currentPage);
+	}
+}
+
+function changePage(currentPage) {
+	var url = new URL(location.href);
+	url.searchParams.set('pageNumber', currentPage);
+	window.location.replace(url.toString());
+}
+
+window.prevPage = prevPage;
+window.nextPage = nextPage;
+
 const cheapSharkStoreLogoLink = 'https://cheapshark.com/img/stores/icons/';
 const cheapSharkDealLink = 'https://www.cheapshark.com/redirect?dealID=';
 
@@ -48,7 +78,7 @@ for (let i = 0; i < dealsData.length; i++) {
 	dealsTableBody.appendChild(currentTableRow);
 
 	const logoTd = document.createElement('td');
-		
+
 	const storeLogo = document.createElement('img');
 	storeLogo.src =
     cheapSharkStoreLogoLink + (Number(dealsData[i].storeID) - 1) + '.png';
