@@ -19,39 +19,43 @@ async function getTopDealsByStore(storeId) {
 
 	let cheapSharkRedirectLink = 'https://www.cheapshark.com/redirect?dealID=';
 
-	const dealContainer = document.createElement('div');
-	dealContainer.classList.add('deals-container');
-
 	const viewAllButton = cardBody.querySelector('.btn');
+
+	const fragment = document.createDocumentFragment();
 
 	for await (let gameData of gamesData) {
 		const dealContainer = document.createElement('div');
 		dealContainer.classList.add('deals-container');
-		viewAllButton.before(dealContainer);
+		fragment.appendChild(dealContainer);
 
-		const anotherUselessDiv = document.createElement('div');
-		dealContainer.appendChild(anotherUselessDiv);
+		const gameNameAndLinkDiv = document.createElement('div');
+		dealContainer.appendChild(gameNameAndLinkDiv);
 
 		const gameLink = document.createElement('a');
-		const gameTitle = truncateString(gameData.title, MAX_GAME_TITLE_LENGTH);
+		const gameTitle = truncateString(
+			gameData.title,
+			MAX_GAME_TITLE_LENGTH
+		);
 
 		gameLink.target = '_blank';
 		gameLink.innerText = gameTitle;
 		gameLink.href = cheapSharkRedirectLink + gameData.dealID;
-		anotherUselessDiv.appendChild(gameLink);
+		gameNameAndLinkDiv.appendChild(gameLink);
 
-		const uselessDiv = document.createElement('div');
-		dealContainer.appendChild(uselessDiv);
+		const pricesDiv = document.createElement('div');
+		dealContainer.appendChild(pricesDiv);
 
 		if (gameData.isOnSale === '1') {
 			const oldPrice = document.createElement('s');
 			oldPrice.innerText = '$' + gameData.normalPrice;
-			uselessDiv.appendChild(oldPrice);
+			pricesDiv.appendChild(oldPrice);
 		}
 
 		const currentPrice = document.createElement('span');
 		currentPrice.classList.add('price-highlight');
 		currentPrice.innerText = '$' + gameData.salePrice;
-		uselessDiv.appendChild(currentPrice);
+		pricesDiv.appendChild(currentPrice);
 	}
+
+	viewAllButton.before(fragment);
 }

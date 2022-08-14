@@ -1,13 +1,13 @@
-import { formatTimeAgo } from './utils.js';
+import { formatTimeAgo } from './scripts/utils.js';
 
 let currentPage = 0;
 
 if (sessionStorage.getItem('currentPage')) {
 	currentPage = Number(sessionStorage.getItem('currentPage'));
 }
-
+      
 let cheapSharkApiLink =
-  'https://www.cheapshark.com/api/1.0/deals?pageSize=16&onSale=1';
+        'https://www.cheapshark.com/api/1.0/deals?pageSize=15&onSale=1';
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -72,9 +72,11 @@ const cheapSharkDealLink = 'https://www.cheapshark.com/redirect?dealID=';
 
 const dealsTableBody = document.querySelector('#deals-table tbody');
 
+const fragment = document.createDocumentFragment();
+
 for await (let dealData of dealsData) {
 	const currentTableRow = document.createElement('tr');
-	dealsTableBody.appendChild(currentTableRow);
+	fragment.appendChild(currentTableRow);
 
 	const logoTd = document.createElement('td');
 
@@ -111,3 +113,5 @@ for await (let dealData of dealsData) {
 	recentTd.innerText = formatTimeAgo(recentDate);
 	currentTableRow.appendChild(recentTd);
 }
+
+dealsTableBody.appendChild(fragment);
