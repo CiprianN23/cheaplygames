@@ -13,7 +13,6 @@ async function getTopDealsByStore(storeId) {
 		`https://www.cheapshark.com/api/1.0/deals?storeID=${storeId}&pageSize=7`
 	);
 	const gamesData = await gamesResponse.json();
-	console.log(gamesData);
 
 	const currentStoreElement = document.getElementById('store-' + storeId);
 	const cardBody = currentStoreElement.querySelector('.card-body');
