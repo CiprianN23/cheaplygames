@@ -1,3 +1,5 @@
+import { truncateString } from './utils.js';
+
 const MAX_GAME_TITLE_LENGTH = 25;
 
 const storeElements = document.querySelectorAll('div[id^="store-"]');
@@ -11,6 +13,7 @@ async function getTopDealsByStore(storeId) {
 		`https://www.cheapshark.com/api/1.0/deals?storeID=${storeId}&pageSize=7`
 	);
 	const gamesData = await gamesResponse.json();
+	console.log(gamesData);
 
 	const currentStoreElement = document.getElementById('store-' + storeId);
 	const cardBody = currentStoreElement.querySelector('.card-body');
@@ -22,7 +25,7 @@ async function getTopDealsByStore(storeId) {
 
 	const viewAllButton = cardBody.querySelector('.btn');
 
-	for (let i = 0; i < gamesData.length; i++) {
+	for await (let gameData of gamesData) {
 		const dealContainer = document.createElement('div');
 		dealContainer.classList.add('deals-container');
 		viewAllButton.before(dealContainer);
@@ -31,33 +34,25 @@ async function getTopDealsByStore(storeId) {
 		dealContainer.appendChild(anotherUselessDiv);
 
 		const gameLink = document.createElement('a');
-		const gameTitle = truncateString(gamesData[i].title, MAX_GAME_TITLE_LENGTH);
+		const gameTitle = truncateString(gameData.title, MAX_GAME_TITLE_LENGTH);
 
 		gameLink.target = '_blank';
 		gameLink.innerText = gameTitle;
-		gameLink.href = cheapSharkRedirectLink + gamesData[i].dealID;
+		gameLink.href = cheapSharkRedirectLink + gameData.dealID;
 		anotherUselessDiv.appendChild(gameLink);
 
 		const uselessDiv = document.createElement('div');
 		dealContainer.appendChild(uselessDiv);
 
-		if (gamesData[i].isOnSale === '1') {
+		if (gameData.isOnSale === '1') {
 			const oldPrice = document.createElement('s');
-			oldPrice.innerText = '$' + gamesData[i].normalPrice;
+			oldPrice.innerText = '$' + gameData.normalPrice;
 			uselessDiv.appendChild(oldPrice);
 		}
 
 		const currentPrice = document.createElement('span');
 		currentPrice.classList.add('price-highlight');
-		currentPrice.innerText = '$' + gamesData[i].salePrice;
+		currentPrice.innerText = '$' + gameData.salePrice;
 		uselessDiv.appendChild(currentPrice);
-	}
-}
-
-function truncateString(str, num) {
-	if (str.length > num) {
-		return str.slice(0, num) + '...';
-	} else {
-		return str;
 	}
 }

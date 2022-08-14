@@ -3,7 +3,6 @@ import { formatTimeAgo } from './utils.js';
 let currentPage = 0;
 
 if (sessionStorage.getItem('currentPage')) {
-	// Restore the contents of the text field
 	currentPage = Number(sessionStorage.getItem('currentPage'));
 }
 
@@ -73,7 +72,7 @@ const cheapSharkDealLink = 'https://www.cheapshark.com/redirect?dealID=';
 
 const dealsTableBody = document.querySelector('#deals-table tbody');
 
-for (let i = 0; i < dealsData.length; i++) {
+for await (let dealData of dealsData) {
 	const currentTableRow = document.createElement('tr');
 	dealsTableBody.appendChild(currentTableRow);
 
@@ -81,34 +80,34 @@ for (let i = 0; i < dealsData.length; i++) {
 
 	const storeLogo = document.createElement('img');
 	storeLogo.src =
-    cheapSharkStoreLogoLink + (Number(dealsData[i].storeID) - 1) + '.png';
+    cheapSharkStoreLogoLink + (Number(dealData.storeID) - 1) + '.png';
 	logoTd.appendChild(storeLogo);
 	currentTableRow.appendChild(logoTd);
 
 	const savingsTd = document.createElement('td');
-	savingsTd.innerText = Math.round(Number(dealsData[i].savings)) + '%';
+	savingsTd.innerText = Math.round(Number(dealData.savings)) + '%';
 	currentTableRow.appendChild(savingsTd);
 
 	const priceTd = document.createElement('td');
-	priceTd.innerText = '$' + dealsData[i].salePrice;
+	priceTd.innerText = '$' + dealData.salePrice;
 	const oldPrice = document.createElement('s');
-	oldPrice.innerText = '$' + dealsData[i].normalPrice;
+	oldPrice.innerText = '$' + dealData.normalPrice;
 	priceTd.appendChild(oldPrice);
 	currentTableRow.appendChild(priceTd);
 
 	const titleTd = document.createElement('td');
 	const dealLink = document.createElement('a');
-	dealLink.href = cheapSharkDealLink + dealsData[i].dealID;
-	dealLink.innerText = dealsData[i].title;
+	dealLink.href = cheapSharkDealLink + dealData.dealID;
+	dealLink.innerText = dealData.title;
 	titleTd.appendChild(dealLink);
 	currentTableRow.appendChild(titleTd);
 
 	const dealRatingTd = document.createElement('td');
-	dealRatingTd.innerText = dealsData[i].dealRating;
+	dealRatingTd.innerText = dealData.dealRating;
 	currentTableRow.appendChild(dealRatingTd);
 
 	const recentTd = document.createElement('td');
-	const recentDate = new Date(dealsData[i].lastChange * 1000);
+	const recentDate = new Date(dealData.lastChange * 1000);
 	recentTd.innerText = formatTimeAgo(recentDate);
 	currentTableRow.appendChild(recentTd);
 }
