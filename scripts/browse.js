@@ -1,4 +1,4 @@
-import { formatTimeAgo } from './scripts/utils.js';
+import { formatTimeAgo } from './utils.js';
 
 let currentPage = 0;
 
