@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      as="style"
+    />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,15 +28,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
       href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
-      rel="stylesheet"
-    />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
-      rel="stylesheet"
+      crossorigin="anonymous"
     />
   </head>
   <body>
@@ -52,23 +53,22 @@
       <div class="half">
         <div class="item">
           <label for="name">NAME</label>
-          <input type="text" id = "name">
+          <input type="text" id="name" />
         </div>
         <div class="item">
           <label for="email">EMAIL</label>
-          <input type="text" id = "email">
+          <input type="text" id="email" />
         </div>
       </div>
       <div class="full">
         <label for="message">MESSAGE</label>
-        <textarea name="" id = "message"></textarea>
+        <textarea name="" id="message"></textarea>
       </div>
       <div class="action">
-        <input type="submit" value = "SEND MESSAGE">
-        <input type="reset" value = "RESET">
+        <input type="submit" value="SEND MESSAGE" />
+        <input type="reset" value="RESET" />
       </div>
     </form>
-
 
     <footer>
       <div class="footer-content">
@@ -89,14 +89,19 @@
           <a href="terms.html">Terms&Conditions</a>
         </p>
         <br />
-        <p class="footer-notice">This website uses <a href="https://apidocs.cheapshark.com/" target="_blank">CheapShark API</a></p>
+        <p class="footer-notice">
+          This website uses
+          <a href="https://apidocs.cheapshark.com/" target="_blank"
+            >CheapShark API</a
+          >
+        </p>
         <br />
         <p class="footer-notice">
           The prices listed on this site are correct to the best of our
           knowledge. CheaplyGames offers no guarantee on accuracy or
           availability. Copyrights and trademarks are the property of their
-          respective owners. © 2022 CheaplyGames, most cheap games! All
-          rights reserved.
+          respective owners. © 2022 CheaplyGames, most cheap games! All rights
+          reserved.
         </p>
       </div>
     </footer>
