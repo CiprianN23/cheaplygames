@@ -1,5 +1,6 @@
 <script lang="ts">
   import Message from "../../Components/Message.svelte";
+  import { PUBLIC_PRIVATE_EMAIL } from "$env/static/public";
 
   let error: any = "";
   let message: any = "";
@@ -8,15 +9,27 @@
   let email: string;
   let userMessage: string;
 
+  let emailValid: boolean = true;
+  let emailRegex = new RegExp(
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  );
+
   const submitForm = async () => {
+
+    if (!emailRegex.test(email))
+    {
+      emailValid = false;
+      return;
+    }
+    else {
+      emailValid = true;
+    }
+
     try {
-      const submit = await fetch("/api/contact", {
+      const submit = await fetch("https://mazi.ro/contact-submit.php", {
         method: "POST",
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          message: userMessage,
-        }),
+        body: `name=${name}&email=${email}&message=${userMessage}&myEmail=${PUBLIC_PRIVATE_EMAIL}`,
+        headers: { "Content-type": "application/x-www-form-urlencoded" },
       });
 
       message = await submit.json();
@@ -24,9 +37,9 @@
       error = err;
     }
 
-    name = '';
-    email = '';
-    userMessage = '';
+    name = "";
+    email = "";
+    userMessage = "";
   };
 </script>
 
@@ -58,8 +71,11 @@
       <input type="text" id="name" name="name" bind:value={name} required />
     </div>
     <div class="item">
-      <label for="email">EMAIL</label>
+      <label for="email ">EMAIL</label>
       <input type="text" id="email" name="email" bind:value={email} required />
+      {#if emailValid === false}
+        <span style="color: red;">Invalid email!</span>
+      {/if}
     </div>
   </div>
   <div class="full">
@@ -72,8 +88,7 @@
 </form>
 
 <style>
-
-  .message-container{
+  .message-container {
     width: 50rem;
     max-width: 97%;
     margin: 50px auto;
