@@ -14,5 +14,5 @@ export const POST: RequestHandler = async ({ request }) => {
 		headers: { 'Content-type': 'application/x-www-form-urlencoded' }
     });
 
-    return new Response(String(response.status));
+    return response;
 }
