@@ -3,6 +3,7 @@
     import DealLastChange from "../../Components/DealLastChange.svelte";
 
     export let data: PageData;
+    let isDisabled: boolean = false;
 
     $: deals = data.deals;
 
@@ -13,19 +14,23 @@
 
     const previousPage = async () => {
         currentPage -= 1;
+        isDisabled = true;
         const res = await fetch(
             `https://www.cheapshark.com/api/1.0/deals?pageSize=15&onSale=1&pageNumber=${currentPage}`
         );
         deals = await res.json();
+        isDisabled = false;
         document.body.scrollIntoView();
     };
 
     const nextPage = async () => {
         currentPage += 1;
+        isDisabled = true;
         const res = await fetch(
             `https://www.cheapshark.com/api/1.0/deals?pageSize=15&onSale=1&pageNumber=${currentPage}`
         );
         deals = await res.json();
+        isDisabled = false;
         document.body.scrollIntoView();
     };
 </script>
@@ -81,15 +86,16 @@
     </table>
 
     <nav>
+        <p class="page">Page {currentPage} of {data.maxPages}</p>
         <ul class="pagination" id="pagination">
             {#if currentPage > 0}
                 <li>
-                    <button on:click={previousPage}>&#8592; Prev</button>
+                    <button disabled={isDisabled} class:disabled={isDisabled} on:click={previousPage}>&#8592; Prev</button>
                 </li>
             {/if}
             {#if currentPage < Number(data.maxPages)}
                 <li>
-                    <button on:click={nextPage}>Next &rarr;</button>
+                    <button disabled={isDisabled} class:disabled={isDisabled} on:click={nextPage}>Next &rarr;</button>
                 </li>
             {/if}
         </ul>
@@ -101,6 +107,19 @@
         width: 90%;
         margin: 50px auto;
     }
+
+    .disabled {
+        cursor: none;
+        background-color: #999 !important;
+        color: var(--primary-text-color) !important;
+    }
+
+    .page {
+        text-align: center;
+        color: var(--primary-text-color);
+        font-size: .95rem;
+    }
+
     .deals-table {
         table-layout: fixed;
         width: 100%;
@@ -136,8 +155,9 @@
     .deals-table thead th:nth-child(1),
     .deals-table thead th:nth-child(2),
     .deals-table thead th:nth-child(3),
-    .deals-table thead th:nth-child(5) {
-        width: 14%;
+    .deals-table thead th:nth-child(5),
+    .deals-table thead th:nth-child(6) {
+        width: 12%;
     }
 
     .deals-table thead th:nth-child(4) {
