@@ -1,7 +1,17 @@
 <script>
-  import Navbar from '../Components/Navbar.svelte';
-  import Footer from '../Components/Footer.svelte';
+  import Navbar from "../Components/Navbar.svelte";
+  import Footer from "../Components/Footer.svelte";
 </script>
+
+<svelte:head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+    rel="preload"
+    as="style"
+  />
+</svelte:head>
 
 <Navbar />
 

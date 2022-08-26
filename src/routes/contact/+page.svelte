@@ -15,13 +15,10 @@
   );
 
   const submitForm = async () => {
-
-    if (!emailRegex.test(email))
-    {
+    if (!emailRegex.test(email)) {
       emailValid = false;
       return;
-    }
-    else {
+    } else {
       emailValid = true;
     }
 
