@@ -1,9 +1,13 @@
 <script lang="ts">
     import type { PageData } from "./$types";
     import DealLastChange from "../../Components/DealLastChange.svelte";
+    import { page } from "$app/stores";
 
     export let data: PageData;
     let isDisabled: boolean = false;
+    let storeID = $page.url.searchParams.get("storeID");
+    let sortBy: string = "Deal Rating";
+    let desc: number = 0;
 
     $: deals = data.deals;
 
@@ -12,13 +16,30 @@
     const cheapSharkStoreLogoLink = "https://cheapshark.com/img/stores/icons/";
     const cheapSharkDealLink = "https://www.cheapshark.com/redirect?dealID=";
 
+    async function refreshDeals() {
+        let dealsLink: string = `https://www.cheapshark.com/api/1.0/deals?pageSize=15&pageNumber=${currentPage}`;
+
+        if (storeID) {
+            dealsLink = dealsLink.concat(`&storeID=${storeID}`);
+        }
+
+        if (sortBy) {
+            dealsLink = dealsLink.concat(`&sortBy=${sortBy}`);
+        }
+
+        if (desc) {
+            dealsLink = dealsLink.concat(`&desc=${desc}`);
+        }
+
+        const res = await fetch(dealsLink);
+        data.maxPages = res.headers.get("x-total-page-count");
+        deals = await res.json();
+    }
+
     const previousPage = async () => {
         currentPage -= 1;
         isDisabled = true;
-        const res = await fetch(
-            `https://www.cheapshark.com/api/1.0/deals?pageSize=15&onSale=1&pageNumber=${currentPage}`
-        );
-        deals = await res.json();
+        await refreshDeals();
         isDisabled = false;
         document.body.scrollIntoView();
     };
@@ -26,25 +47,60 @@
     const nextPage = async () => {
         currentPage += 1;
         isDisabled = true;
-        const res = await fetch(
-            `https://www.cheapshark.com/api/1.0/deals?pageSize=15&onSale=1&pageNumber=${currentPage}`
-        );
-        deals = await res.json();
+        await refreshDeals();
         isDisabled = false;
         document.body.scrollIntoView();
     };
+
+    async function sortByColumn(column: string) {
+        sortBy = column;
+        desc = desc ? 0 : 1;
+
+        await refreshDeals();
+    }
 </script>
 
 <div class="container">
-    <table class="deals-table" id="deals-table">
+    <table class="deals-table">
         <thead>
             <tr>
-                <th>Store</th>
-                <th>Savings</th>
-                <th>Price</th>
-                <th>Title</th>
-                <th>Deal Rating</th>
-                <th>Last Change</th>
+                <th
+                    on:click={() => sortByColumn("Store")}
+                    class:headerSortDown={desc === 0 && sortBy === "Store"}
+                    class:headerSortUp={desc === 1 && sortBy === "Store"}
+                    >Store</th
+                >
+                <th
+                    on:click={() => sortByColumn("Savings")}
+                    class:headerSortDown={desc === 0 && sortBy === "Savings"}
+                    class:headerSortUp={desc === 1 && sortBy === "Savings"}
+                    >Savings</th
+                >
+                <th
+                    on:click={() => sortByColumn("Price")}
+                    class:headerSortDown={desc === 0 && sortBy === "Price"}
+                    class:headerSortUp={desc === 1 && sortBy === "Price"}
+                    >Price</th
+                >
+                <th
+                    on:click={() => sortByColumn("Title")}
+                    class:headerSortDown={desc === 0 && sortBy === "Title"}
+                    class:headerSortUp={desc === 1 && sortBy === "Title"}
+                    >Title</th
+                >
+                <th
+                    on:click={() => sortByColumn("Deal Rating")}
+                    class:headerSortDown={desc === 0 &&
+                        sortBy === "Deal Rating"}
+                    class:headerSortUp={desc === 1 && sortBy === "Deal Rating"}
+                    >Deal Rating</th
+                >
+                <th
+                    on:click={() => sortByColumn("recent")}
+                    class:headerSortDown={desc === 0 && sortBy === "recent"}
+                    class:headerSortUp={desc === 1 && sortBy === "recent"}
+                    >Last Change</th
+                >
             </tr>
         </thead>
         <tbody>
@@ -63,7 +119,9 @@
                     </td>
                     <td>
                         ${deal.salePrice}
-                        <s>${deal.normalPrice}</s>
+                        {#if deal.isOnSale === "1"}
+                            <s>${deal.normalPrice}</s>
+                        {/if}
                     </td>
                     <td>
                         <a href={cheapSharkDealLink + deal.dealID}
@@ -90,12 +148,20 @@
         <ul class="pagination" id="pagination">
             {#if currentPage > 0}
                 <li>
-                    <button disabled={isDisabled} class:disabled={isDisabled} on:click={previousPage}>&#8592; Prev</button>
+                    <button
+                        disabled={isDisabled}
+                        class:disabled={isDisabled}
+                        on:click={previousPage}>&#8592; Prev</button
+                    >
                 </li>
             {/if}
             {#if currentPage < Number(data.maxPages)}
                 <li>
-                    <button disabled={isDisabled} class:disabled={isDisabled} on:click={nextPage}>Next &rarr;</button>
+                    <button
+                        disabled={isDisabled}
+                        class:disabled={isDisabled}
+                        on:click={nextPage}>Next &rarr;</button
+                    >
                 </li>
             {/if}
         </ul>
@@ -117,7 +183,7 @@
     .page {
         text-align: center;
         color: var(--primary-text-color);
-        font-size: .95rem;
+        font-size: 0.95rem;
     }
 
     .deals-table {
@@ -135,6 +201,10 @@
         color: #000;
         text-align: left;
         font-weight: bold;
+    }
+
+    .deals-table th:hover {
+        text-decoration: underline;
     }
 
     .deals-table th,
@@ -204,6 +274,26 @@
 
     .deals-table a:hover {
         color: var(--accent-color);
+    }
+
+    .headerSortDown:after,
+    .headerSortUp:after {
+        content: " ";
+        position: relative;
+        left: 10px;
+        border: 7px solid transparent;
+    }
+    .headerSortDown:after {
+        top: 10px;
+        border-top-color: silver;
+    }
+    .headerSortUp:after {
+        bottom: 15px;
+        border-bottom-color: silver;
+    }
+    .headerSortDown,
+    .headerSortUp {
+        padding-left: 20px;
     }
 
     @media only screen and (max-width: 760px),

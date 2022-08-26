@@ -8,8 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
   <link
     href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
-    rel="preload"
-    as="style"
+    rel="stylesheet"
   />
 </svelte:head>
 
