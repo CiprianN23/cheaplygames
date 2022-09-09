@@ -1,6 +1,3 @@
-[build.environment]
-  NPM_FLAGS="--prefix=/dev/null"
-
 [build]
   command = "pnpm run build"
   publish = "build"
