@@ -13,6 +13,8 @@
 
     let currentPage: number = 0;
 
+    let title: string;
+
     const cheapSharkStoreLogoLink = "https://cheapshark.com/img/stores/icons/";
     const cheapSharkDealLink = "https://www.cheapshark.com/redirect?dealID=";
 
@@ -29,6 +31,10 @@
 
         if (desc) {
             dealsLink = dealsLink.concat(`&desc=${desc}`);
+        }
+
+        if (title) {
+            dealsLink = dealsLink.concat(`&title=${title}`);
         }
 
         const res = await fetch(dealsLink);
@@ -61,42 +67,50 @@
 </script>
 
 <div class="container">
+
+    <div class="filtering">
+        <div>
+            <input placeholder="Search" type="search" name="title" bind:value={title} on:change={async () => await refreshDeals()}>
+            <button on:click={async () => await refreshDeals()}>Show</button>
+        </div>
+    </div>
+
     <table class="deals-table">
         <thead>
             <tr>
                 <th
-                    on:click={() => sortByColumn("Store")}
+                    on:click={async () => await sortByColumn("Store")}
                     class:headerSortDown={desc === 0 && sortBy === "Store"}
                     class:headerSortUp={desc === 1 && sortBy === "Store"}
                     >Store</th
                 >
                 <th
-                    on:click={() => sortByColumn("Savings")}
+                    on:click={async () => await sortByColumn("Savings")}
                     class:headerSortDown={desc === 0 && sortBy === "Savings"}
                     class:headerSortUp={desc === 1 && sortBy === "Savings"}
                     >Savings</th
                 >
                 <th
-                    on:click={() => sortByColumn("Price")}
+                    on:click={async () => await sortByColumn("Price")}
                     class:headerSortDown={desc === 0 && sortBy === "Price"}
                     class:headerSortUp={desc === 1 && sortBy === "Price"}
                     >Price</th
                 >
                 <th
-                    on:click={() => sortByColumn("Title")}
+                    on:click={async () => await sortByColumn("Title")}
                     class:headerSortDown={desc === 0 && sortBy === "Title"}
                     class:headerSortUp={desc === 1 && sortBy === "Title"}
                     >Title</th
                 >
                 <th
-                    on:click={() => sortByColumn("Deal Rating")}
+                    on:click={async () => await sortByColumn("Deal Rating")}
                     class:headerSortDown={desc === 0 &&
                         sortBy === "Deal Rating"}
                     class:headerSortUp={desc === 1 && sortBy === "Deal Rating"}
                     >Deal Rating</th
                 >
                 <th
-                    on:click={() => sortByColumn("recent")}
+                    on:click={async () => await sortByColumn("recent")}
                     class:headerSortDown={desc === 0 && sortBy === "recent"}
                     class:headerSortUp={desc === 1 && sortBy === "recent"}
                     >Last Change</th
@@ -144,7 +158,7 @@
     </table>
 
     <nav>
-        <p class="page">Page {currentPage} of {data.maxPages}</p>
+        <p class="page">Page {currentPage + 1} of {Number(data.maxPages) + 1}</p>
         <ul class="pagination" id="pagination">
             {#if currentPage > 0}
                 <li>
@@ -169,6 +183,35 @@
 </div>
 
 <style>
+
+    input[type="search"] {
+        outline: 0;
+        border: 0;
+        height: 1.5rem;
+        padding-left: 1rem;
+        border-radius: 2em;
+        transition: all .3s cubic-bezier(0, 0, 0.43, 1.49);
+        transition-property: width, border-radius;
+    }
+
+    .filtering {
+        display: flex;
+        color: var(--primary-text-color);
+    }
+
+    .filtering button {
+        display:inline-block;
+        font-weight: bold;
+        padding:0.3em 1.2em;
+        margin:0 0.3em 0.3em 0;
+        border: none;
+        border-radius:2em;
+        text-decoration:none;
+        color:var(--secondary-text-color);
+        background-color:var(--accent-color);
+        text-align:center;
+    }
+
     .container {
         width: 90%;
         margin: 50px auto;
@@ -267,8 +310,7 @@
     }
 
     .deals-table a {
-        text-decoration: underline;
-        text-decoration-style: dotted;
+        text-decoration: none;
         color: #000;
     }
 
@@ -359,6 +401,10 @@
         }
         .deals-table td:nth-of-type(6):before {
             content: "Last change";
+        }
+
+        .filtering {
+            margin-left: 0.5rem;
         }
     }
 </style>
