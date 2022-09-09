@@ -5,7 +5,7 @@ importers:
   .:
     specifiers:
       '@sveltejs/adapter-auto': next
-      '@sveltejs/adapter-netlify': ^1.0.0-next.76
+      '@sveltejs/adapter-vercel': next
       '@sveltejs/kit': next
       svelte: ^3.50.1
       svelte-check: ^2.9.0
@@ -15,8 +15,8 @@ importers:
       vite: ^3.1.0
     devDependencies:
       '@sveltejs/adapter-auto': 1.0.0-next.72
-      '@sveltejs/adapter-netlify': 1.0.0-next.76
-      '@sveltejs/kit': 1.0.0-next.479_svelte@3.50.1+vite@3.1.0
+      '@sveltejs/adapter-vercel': 1.0.0-next.73
+      '@sveltejs/kit': 1.0.0-next.480_svelte@3.50.1+vite@3.1.0
       svelte: 3.50.1
       svelte-check: 2.9.0_svelte@3.50.1
       svelte-preprocess: 4.10.7_iprco5tylfmvffqgrvqxc46njy
@@ -157,8 +157,8 @@ packages:
       - supports-color
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.479_svelte@3.50.1+vite@3.1.0:
-    resolution: {integrity: sha512-VE6D6ee/U8grO0pm+aYo7ErMEqS3dzM27gUDxCIXO5//wKCuizrH6Oj3mE+oPQvJhIvoNNeaugq2eFwUxIB7FA==}
+  /@sveltejs/kit/1.0.0-next.480_svelte@3.50.1+vite@3.1.0:
+    resolution: {integrity: sha512-RnltVDZFksAkeIZ0wgMQDr4POz3WZxSDy6D/ycIjrz3VXMDYWxKRqmTEI7Yl7TxPgUabeYHGRm/qI+nSXOb/Yw==}
     engines: {node: '>=16.14'}
     hasBin: true
     requiresBuild: true
