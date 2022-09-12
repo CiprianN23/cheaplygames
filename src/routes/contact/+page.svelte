@@ -1,52 +1,24 @@
 <script lang="ts">
   import Message from "../../Components/Message.svelte";
-  import { PUBLIC_PRIVATE_EMAIL } from "$env/static/public";
+  import type { ActionData } from './$types'
 
-  let error: any = "";
-  let message: any = "";
-
-  let name: string;
-  let email: string;
-  let userMessage: string;
-
-  let emailValid: boolean = true;
-  let emailRegex = new RegExp(
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  );
-
-  const submitForm = async () => {
-    if (!emailRegex.test(email)) {
-      emailValid = false;
-      return;
-    } else {
-      emailValid = true;
-    }
-
-    try {
-      const submit = await fetch("https://mazi.ro/contact-submit.php", {
-        method: "POST",
-        body: `name=${name}&email=${email}&message=${userMessage}&myEmail=${PUBLIC_PRIVATE_EMAIL}`,
-        headers: { "Content-type": "application/x-www-form-urlencoded" },
-      });
-
-      message = await submit.json();
-    } catch (err) {
-      error = err;
-    }
-
-    name = "";
-    email = "";
-    userMessage = "";
-  };
+  export let form: ActionData;
 </script>
 
 <div class="message-container">
-  {#if message}
+  {#if form?.success}
     <Message
       message="Contact submitted successfully!"
       messageType="success-msg"
     />
-  {:else if error}
+  {/if}
+  {#if form?.invalidEmail}
+    <Message
+      message="Email address is not valid!"
+      messageType="error-msg"
+    />
+  {/if}
+  {#if form?.badResponse}
     <Message
       message="There has been an error. Submiting failed!"
       messageType="error-msg"
@@ -55,7 +27,7 @@
 </div>
 
 <form
-  on:submit|preventDefault={submitForm}
+  method="POST"
   class="contact-form"
   id="contact-form"
 >
@@ -65,19 +37,16 @@
   <div class="half">
     <div class="item">
       <label for="name">NAME</label>
-      <input type="text" id="name" name="name" bind:value={name} required />
+      <input type="text" id="name" name="name" value={form?.name ?? ''} required />
     </div>
     <div class="item">
       <label for="email ">EMAIL</label>
-      <input type="text" id="email" name="email" bind:value={email} required />
-      {#if emailValid === false}
-        <span style="color: red;">Invalid email!</span>
-      {/if}
+      <input type="text" id="email" name="email" value={form?.email ?? ''} required />
     </div>
   </div>
   <div class="full">
     <label for="message">MESSAGE</label>
-    <textarea name="message" id="message" bind:value={userMessage} required />
+    <textarea name="message" id="message" value={form?.message ?? ''} required />
   </div>
   <div class="action">
     <input type="submit" value="SEND MESSAGE" />
