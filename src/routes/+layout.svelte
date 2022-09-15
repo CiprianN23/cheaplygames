@@ -4,9 +4,8 @@
 </script>
 
 <svelte:head>
-	<link rel="preconnect" href="https://fonts.googleapis.com" />
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
+	<link rel="preconnect" href="https://fonts.bunny.net" crossorigin="anonymous">
+	<link href="https://fonts.bunny.net/css?family=open-sans:400" rel="stylesheet" />
 </svelte:head>
 
 <Navbar />
