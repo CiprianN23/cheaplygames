@@ -14,7 +14,7 @@ export const actions: Actions = {
 		);
 
 		if (!emailRegex.test(email?.toString() ?? '')) {
-			return invalid(400, { name, message, email, invalidEmail: true });
+			return invalid(400, { invalidEmail: true, badResponse: false, success: false });
 		}
 
 		const response = await fetch('https://mazi.ro/contact-submit.php', {
@@ -24,9 +24,9 @@ export const actions: Actions = {
 		});
 
 		if (!response.ok) {
-			return invalid(400, { badResponse: true });
+			return invalid(400, { invalidEmail: false, badResponse: true, success: false });
 		}
 
-		return { success: true };
+		return { invalidEmail: false, badResponse: false, success: true };
 	}
 };

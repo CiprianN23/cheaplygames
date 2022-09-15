@@ -14,7 +14,7 @@ const config = {
 			external: [],
 
 			split: false
-		  })
+		})
 	}
 };
 
