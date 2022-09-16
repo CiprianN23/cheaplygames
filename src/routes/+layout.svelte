@@ -1,7 +1,7 @@
 <script>
 	import 'uno.css';
-	import Navbar from '../Components/Navbar.svelte';
-	import Footer from '../Components/Footer.svelte';
+	import Navbar from '$lib/components/Navbar.svelte'
+	import Footer from '$lib/components/Footer.svelte'
 </script>
 
 <Navbar />

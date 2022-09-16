@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import DealLastChange from '../../Components/DealLastChange.svelte';
+	import DealLastChange from '$lib/components/DealLastChange.svelte'
 	import { page } from '$app/stores';
 
 	export let data: PageData;

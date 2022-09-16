@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Message from '../../Components/Message.svelte';
+	import Message from '$lib/components/Message.svelte'
 	import type { ActionData } from './$types';
 
 	export let form: ActionData;

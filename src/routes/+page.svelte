@@ -3,7 +3,7 @@
 
 	export let data: PageData;
 
-	import StoreCard from '../Components/StoreCard.svelte';
+	import StoreCard from '$lib/components/StoreCard.svelte'
 </script>
 
 <div class="stores">
