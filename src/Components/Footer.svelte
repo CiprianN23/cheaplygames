@@ -4,10 +4,12 @@
 		<p>Most cheap games.</p>
 		<div class="icons">
 			<a href="https://twitter.com/cheaply_games" target="_blank">
-				<img src="/icons/twitter-icon.svg" alt="twitter" />
+				<!-- <img src="/icons/twitter-icon.svg" alt="twitter" /> -->
+				<div class="i-bi-twitter"></div>
 			</a>
 			<a href="https://github.com/CiprianN23/cheaplygames" target="_blank" id="github">
-				<img src="/icons/github-icon.svg" alt="github" />
+				<!-- <img src="/icons/github-icon.svg" alt="github" /> -->
+				<div class="i-bi-github"></div>
 			</a>
 		</div>
 	</div>
@@ -34,7 +36,7 @@
 
 <style>
 	.footer-content .icons a:hover {
-		background: var(--secondary-color);
+		color: var(--accent-color);
 	}
 
 	footer {
@@ -68,8 +70,8 @@
 
 	.footer-content .icons a {
 		display: inline-block;
-		border: 1px solid white;
-		border-radius: 50%;
+		font-size: 1.7rem;
+		border-radius: 100%;
 		line-height: 36px;
 		text-align: center;
 		font-weight: 600;

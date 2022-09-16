@@ -5,15 +5,15 @@
 
 <div class={messageType}>
 	{#if messageType === 'info-msg'}
-		<img src="/icons/info-circle.svg" alt="info icon" />
+		<div class="i-bi-info-circle"></div>
 	{:else if messageType === 'success-msg'}
-		<img src="/icons/check-circle.svg" alt="success icon" />
+		<div class="i-bi-check-circle"></div>
 	{:else if messageType === 'warning-msg'}
-		<img src="/icons/exclamation-circle.svg" alt="exclamation icon" />
+		<div class="i-bi-exclamation-circle"></div>
 	{:else if messageType === 'error-msg'}
-		<img src="/icons/x-circle.svg" alt="error icon" />
+		<div class="i-bi-x-circle"></div>
 	{/if}
-	{message}
+	<div class="message">{message}</div>
 </div>
 
 <style>
@@ -21,6 +21,7 @@
 	.success-msg,
 	.warning-msg,
 	.error-msg {
+		display: flex;
 		margin: 10px 0;
 		padding: 10px;
 		border-radius: 3px 3px 3px 3px;
@@ -40,5 +41,9 @@
 	.error-msg {
 		color: #d8000c;
 		background-color: #ffbaba;
+	}
+
+	.message {
+		margin-left: 7px;
 	}
 </style>
