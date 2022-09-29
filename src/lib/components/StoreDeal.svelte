@@ -38,8 +38,7 @@
 	}
 
 	.game-title a {
-		text-decoration: underline;
-		text-decoration-style: dotted;
+		text-decoration: none;
 		color: #000;
 	}
 
@@ -59,6 +58,6 @@
 		border: 1px solid #909090;
 		border-radius: 5px;
 		margin-left: 5px;
-		font-weight: bold;
+		font-weight: 600;
 	}
 </style>
