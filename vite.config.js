@@ -15,7 +15,7 @@ const config = {
 				presetWebFonts({
 					provider: 'bunny',
 					fonts: {
-						sans: 'Open Sans'
+						sans: 'Poppins'
 					}
 				})
 			]

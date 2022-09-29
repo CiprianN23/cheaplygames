@@ -1,7 +1,7 @@
 <script>
 	import 'uno.css';
-	import Navbar from '$lib/components/Navbar.svelte'
-	import Footer from '$lib/components/Footer.svelte'
+	import Navbar from '$lib/components/Navbar.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 </script>
 
 <Navbar />
@@ -22,9 +22,9 @@
 
 	:global(*) {
 		box-sizing: border-box;
-		font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
 		margin: 0;
 		padding: 0;
+		font-family: 'Poppins', sans-serif;
 	}
 
 	:global(body) {
