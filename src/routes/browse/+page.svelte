@@ -1,15 +1,15 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import DealLastChange from '$lib/components/DealLastChange.svelte'
+	import DealLastChange from '$lib/components/DealLastChange.svelte';
 	import { page } from '$app/stores';
+	import { goto, invalidateAll } from '$app/navigation';
 
 	export let data: PageData;
 	let isDisabled: boolean = false;
 	let storeID = $page.url.searchParams.get('storeID');
 	let sortBy: string = 'Deal Rating';
 	let desc: number = 0;
-
-	$: deals = data.deals;
+	let selectedValue: string = 'Deal Rating';
 
 	let currentPage: number = 0;
 
@@ -19,27 +19,34 @@
 	const cheapSharkDealLink = 'https://www.cheapshark.com/redirect?dealID=';
 
 	async function refreshDeals() {
-		let dealsLink: string = `https://www.cheapshark.com/api/1.0/deals?pageSize=15&pageNumber=${currentPage}`;
+		if (currentPage) {
+			$page.url.searchParams.set('pageNumber', currentPage.toString());
+		} else {
+			$page.url.searchParams.delete('pageNumber');
+		}
 
 		if (storeID) {
-			dealsLink = dealsLink.concat(`&storeID=${storeID}`);
+			$page.url.searchParams.set('storeID', storeID);
+		} else {
+			$page.url.searchParams.delete('storeID');
 		}
 
 		if (sortBy) {
-			dealsLink = dealsLink.concat(`&sortBy=${sortBy}`);
+			$page.url.searchParams.set('sortBy', sortBy);
 		}
 
-		if (desc) {
-			dealsLink = dealsLink.concat(`&desc=${desc}`);
+		if (sortBy === 'Deal Rating') {
+			$page.url.searchParams.delete('sortBy');
 		}
 
 		if (title) {
-			dealsLink = dealsLink.concat(`&title=${title}`);
+			$page.url.searchParams.set('title', title);
+		} else {
+			$page.url.searchParams.delete('title');
 		}
 
-		const res = await fetch(dealsLink);
-		data.maxPages = res.headers.get('x-total-page-count');
-		deals = await res.json();
+		await goto(`${$page.url.href}`);
+		await invalidateAll();
 	}
 
 	const previousPage = async () => {
@@ -60,8 +67,6 @@
 
 	async function sortByColumn(column: string) {
 		sortBy = column;
-		desc = desc ? 0 : 1;
-
 		await refreshDeals();
 	}
 </script>
@@ -77,6 +82,21 @@
 				on:change={async () => await refreshDeals()}
 			/>
 			<button on:click={async () => await refreshDeals()}>Show</button>
+
+			<div class="hidden">
+				<label for="orderBy">Sort: </label>
+				<select
+					name="orderBy"
+					id="orderBy"
+					bind:value={selectedValue}
+					on:change={async () => await sortByColumn(selectedValue)}
+				>
+					<option value="Price">Price: lowest</option>
+					<option value="Deal Rating" selected>Best Deals</option>
+					<option value="Title">A-Z</option>
+					<option value="Savings">Savings</option>
+				</select>
+			</div>
 		</div>
 	</div>
 
@@ -116,7 +136,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each deals as deal}
+			{#each data.deals as deal}
 				<tr>
 					<td>
 						<img src={cheapSharkStoreLogoLink + (Number(deal.storeID) - 1) + '.png'} alt="" />
@@ -176,6 +196,16 @@
 		border-radius: 2em;
 		transition: all 0.3s cubic-bezier(0, 0, 0.43, 1.49);
 		transition-property: width, border-radius;
+	}
+
+	.hidden {
+		display: none;
+	}
+
+	#orderBy {
+		margin-left: 0.2rem;
+		border: 1px solid #ced4da;
+		border-radius: 2em;
 	}
 
 	.filtering {
@@ -389,6 +419,10 @@
 
 		.filtering {
 			margin-left: 0.5rem;
+		}
+
+		.hidden {
+			display: block;
 		}
 	}
 </style>
