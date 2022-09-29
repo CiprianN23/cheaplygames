@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import StoreDeal from '$lib/components/StoreDeal.svelte'
+	import StoreDeal from '$lib/components/StoreDeal.svelte';
 
 	export let storeData: any;
 

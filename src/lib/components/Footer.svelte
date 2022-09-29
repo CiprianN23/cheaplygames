@@ -4,12 +4,10 @@
 		<p>Most cheap games.</p>
 		<div class="icons">
 			<a href="https://twitter.com/cheaply_games" target="_blank">
-				<!-- <img src="/icons/twitter-icon.svg" alt="twitter" /> -->
-				<div class="i-bi-twitter"></div>
+				<div class="i-bi-twitter" />
 			</a>
 			<a href="https://github.com/CiprianN23/cheaplygames" target="_blank" id="github">
-				<!-- <img src="/icons/github-icon.svg" alt="github" /> -->
-				<div class="i-bi-github"></div>
+				<div class="i-bi-github" />
 			</a>
 		</div>
 	</div>

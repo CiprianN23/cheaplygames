@@ -5,13 +5,13 @@
 
 <div class={messageType}>
 	{#if messageType === 'info-msg'}
-		<div class="i-bi-info-circle"></div>
+		<div class="i-bi-info-circle" />
 	{:else if messageType === 'success-msg'}
-		<div class="i-bi-check-circle"></div>
+		<div class="i-bi-check-circle" />
 	{:else if messageType === 'warning-msg'}
-		<div class="i-bi-exclamation-circle"></div>
+		<div class="i-bi-exclamation-circle" />
 	{:else if messageType === 'error-msg'}
-		<div class="i-bi-x-circle"></div>
+		<div class="i-bi-x-circle" />
 	{/if}
 	<div class="message">{message}</div>
 </div>
