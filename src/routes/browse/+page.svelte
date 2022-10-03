@@ -202,10 +202,15 @@
 		display: none;
 	}
 
+	td > img {
+		display: inline;
+	}
+
 	#orderBy {
 		margin-left: 0.2rem;
 		border: 1px solid #ced4da;
 		border-radius: 2em;
+		color: #000;
 	}
 
 	.filtering {
@@ -216,7 +221,7 @@
 	.filtering button {
 		display: inline-block;
 		font-weight: bold;
-		padding: 0.3em 1.2em;
+		padding: 0.1em 1em;
 		margin: 0 0.3em 0.3em 0;
 		border: none;
 		border-radius: 2em;

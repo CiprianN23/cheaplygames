@@ -47,6 +47,7 @@
 	}
 
 	.card-header > img {
+		display: inline;
 		max-width: 100%;
 		max-height: 100%;
 	}

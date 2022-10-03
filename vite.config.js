@@ -1,5 +1,5 @@
 import { sveltekit } from '@sveltejs/kit/vite';
-import Unocss from 'unocss/vite';
+import UnoCSS from 'unocss/vite';
 import { extractorSvelte } from '@unocss/core';
 import presetIcons from '@unocss/preset-icons';
 import presetWebFonts from '@unocss/preset-web-fonts';
@@ -7,8 +7,8 @@ import presetWebFonts from '@unocss/preset-web-fonts';
 /** @type {import('vite').UserConfig} */
 const config = {
 	plugins: [
-		sveltekit(),
-		Unocss({
+		UnoCSS({
+			mode: 'svelte-scoped',
 			extractors: [extractorSvelte],
 			presets: [
 				presetIcons(),
@@ -19,7 +19,8 @@ const config = {
 					}
 				})
 			]
-		})
+		}),
+		sveltekit()
 	]
 };
 

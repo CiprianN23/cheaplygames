@@ -1,5 +1,5 @@
 <script>
-	import 'uno.css';
+	import '@unocss/reset/tailwind.css';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 </script>
@@ -21,9 +21,6 @@
 	}
 
 	:global(*) {
-		box-sizing: border-box;
-		margin: 0;
-		padding: 0;
 		font-family: 'Poppins', sans-serif;
 	}
 
