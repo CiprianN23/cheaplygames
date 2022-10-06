@@ -95,6 +95,7 @@
 					<option value="Deal Rating" selected>Best Deals</option>
 					<option value="Title">A-Z</option>
 					<option value="Savings">Savings</option>
+					<option value="recent">Last Change</option>
 				</select>
 			</div>
 		</div>
