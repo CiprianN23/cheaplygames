@@ -37,6 +37,8 @@
 		border: 1px solid #ccc;
 		margin-bottom: 50px;
 		transition: 0.3s;
+		-webkit-box-shadow: 0px 0px 10px 0px #94dfff; 
+		box-shadow: 0px 0px 10px 0px #94dfff;
 	}
 
 	.card-header {
