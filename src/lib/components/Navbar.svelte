@@ -98,7 +98,7 @@
 			position: absolute;
 			z-index: 9999;
 			background-color: transparent;
-			background-image: url("menu.svg");
+			background-image: url("/menu.svg");
 			background-repeat: no-repeat;
 			width: 2rem;
 			border: 0;
@@ -108,7 +108,7 @@
 		}
 
 		.mobile-nav-toggle[aria-expanded="true"] {
-			background-image: url("close.svg");
+			background-image: url("/close.svg");
 		}
 	}	
 
