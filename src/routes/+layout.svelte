@@ -26,5 +26,6 @@
 
 	:global(body) {
 		background-color: var(--primary-color);
+		overflow-x: hidden;
 	}
 </style>

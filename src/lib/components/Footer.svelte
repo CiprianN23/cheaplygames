@@ -1,6 +1,8 @@
 <footer>
 	<div class="footer-content">
-		<h3>Cheaply Games</h3>
+		<div>
+			<img src="/logo-no-background.svg" alt="logo" class="logo">
+		</div>
 		<p>Most cheap games.</p>
 		<div class="icons">
 			<a href="https://twitter.com/cheaply_games" target="_blank">
@@ -33,6 +35,12 @@
 </footer>
 
 <style>
+
+	.logo {
+		width: 250px;
+		height: 75px;
+	}
+
 	.footer-content .icons a:hover {
 		color: var(--accent-color);
 	}
@@ -49,13 +57,6 @@
 		justify-content: center;
 		flex-direction: column;
 		text-align: center;
-	}
-
-	.footer-content h3 {
-		font-size: 2.1rem;
-		font-weight: 500;
-		text-transform: capitalize;
-		line-height: 3rem;
 	}
 
 	.footer-content p {
