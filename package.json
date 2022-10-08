@@ -17,9 +17,9 @@
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/adapter-vercel": "next",
 		"@sveltejs/kit": "next",
-		"@unocss/core": "^0.45.26",
-		"@unocss/preset-icons": "^0.45.26",
-		"@unocss/preset-web-fonts": "^0.45.26",
+		"@unocss/core": "^0.45.28",
+		"@unocss/preset-icons": "^0.45.28",
+		"@unocss/preset-web-fonts": "^0.45.28",
 		"prettier": "2.7.1",
 		"prettier-plugin-svelte": "^2.7.1",
 		"svelte": "^3.50.1",
@@ -27,11 +27,11 @@
 		"svelte-preprocess": "^4.10.7",
 		"tslib": "^2.4.0",
 		"typescript": "^4.8.4",
-		"unocss": "^0.45.26",
+		"unocss": "^0.45.28",
 		"vite": "^3.1.6"
 	},
 	"type": "module",
 	"dependencies": {
-		"@unocss/reset": "^0.45.26"
+		"@unocss/reset": "^0.45.28"
 	}
 }

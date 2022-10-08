@@ -43,8 +43,8 @@
 
 	.logo {
 		margin: 1rem 2rem;
-		width: 250px;
-		height: 75px;
+		width: 150px;
+		height: 50px;
 	}
 
 	.primary-header {
