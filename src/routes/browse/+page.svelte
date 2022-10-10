@@ -197,6 +197,7 @@
 		border-radius: 2em;
 		transition: all 0.3s cubic-bezier(0, 0, 0.43, 1.49);
 		transition-property: width, border-radius;
+		color: var(--secondary-text-color);
 	}
 
 	.hidden {
