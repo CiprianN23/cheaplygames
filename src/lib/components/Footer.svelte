@@ -1,14 +1,19 @@
 <footer>
 	<div class="footer-content">
 		<div>
-			<img src="/logo-no-background.svg" alt="logo" class="logo">
+			<img src="/logo-no-background.svg" alt="logo" class="logo" />
 		</div>
 		<p>Most cheap games.</p>
 		<div class="icons">
-			<a href="https://twitter.com/cheaply_games" target="_blank">
+			<a href="https://twitter.com/cheaply_games" target="_blank" rel="noreferrer">
 				<div class="i-bi-twitter" />
 			</a>
-			<a href="https://github.com/CiprianN23/cheaplygames" target="_blank" id="github">
+			<a
+				href="https://github.com/CiprianN23/cheaplygames"
+				target="_blank"
+				id="github"
+				rel="noreferrer"
+			>
 				<div class="i-bi-github" />
 			</a>
 		</div>
@@ -23,7 +28,7 @@
 		<br />
 		<p class="footer-notice">
 			This website uses
-			<a href="https://apidocs.cheapshark.com/" target="_blank">CheapShark API</a>
+			<a href="https://apidocs.cheapshark.com/" target="_blank" rel="noreferrer">CheapShark API</a>
 		</p>
 		<br />
 		<p class="footer-notice">
@@ -35,7 +40,6 @@
 </footer>
 
 <style>
-
 	.logo {
 		width: 250px;
 		height: 75px;

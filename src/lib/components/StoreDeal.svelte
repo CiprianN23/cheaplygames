@@ -15,7 +15,7 @@
 
 <div class="deal-container">
 	<div class="game-title">
-		<a href={cheapSharkRedirectLink + dealData.dealID} target="_blank"
+		<a href={cheapSharkRedirectLink + dealData.dealID} target="_blank" rel="noreferrer"
 			>{truncateString(dealData.title, MAX_GAME_TITLE_LENGTH)}</a
 		>
 	</div>

@@ -14,26 +14,29 @@
 </script>
 
 <header class="primary-header flex">
-
 	<div>
-		<a href="/"><img src="/logo-no-background.svg" alt="logo" class="logo"></a>
-		
+		<a href="/"><img src="/logo-no-background.svg" alt="logo" class="logo" /></a>
 	</div>
 
-	<button class="mobile-nav-toggle" type="button" aria-label="Menu" aria-controls="primary-navigation" aria-expanded={isMenuActive} on:click={toggleButton}></button>
+	<button
+		class="mobile-nav-toggle"
+		type="button"
+		aria-label="Menu"
+		aria-controls="primary-navigation"
+		aria-expanded={isMenuActive}
+		on:click={toggleButton}
+	/>
 
 	<nav data-sveltekit-prefetch>
 		<ul id="primary-navigation" class="primary-navigation flex" data-visible={isMenuActive}>
 			{#each nav as item}
-			<li>
-				<a class:isActive={$page.url.pathname === item.path} href={item.path}>{item.title}</a>
-			</li>
+				<li>
+					<a class:isActive={$page.url.pathname === item.path} href={item.path}>{item.title}</a>
+				</li>
 			{/each}
 		</ul>
 	</nav>
 </header>
-
-
 
 <style>
 	.flex {
@@ -81,7 +84,7 @@
 			position: fixed;
 			inset: 0 0 0 30%;
 			z-index: 1000;
-			
+
 			flex-direction: column;
 			padding: min(30vh, 10rem) 2em;
 
@@ -89,7 +92,7 @@
 			transition: transform 350ms ease-out;
 		}
 
-		.primary-navigation[data-visible="true"] {
+		.primary-navigation[data-visible='true'] {
 			transform: translateX(0%);
 		}
 
@@ -98,7 +101,7 @@
 			position: absolute;
 			z-index: 9999;
 			background-color: transparent;
-			background-image: url("/menu.svg");
+			background-image: url('/menu.svg');
 			background-repeat: no-repeat;
 			width: 2rem;
 			border: 0;
@@ -107,10 +110,10 @@
 			right: 2rem;
 		}
 
-		.mobile-nav-toggle[aria-expanded="true"] {
-			background-image: url("/close.svg");
+		.mobile-nav-toggle[aria-expanded='true'] {
+			background-image: url('/close.svg');
 		}
-	}	
+	}
 
 	@media (min-width: 35em) {
 		.primary-navigation {
