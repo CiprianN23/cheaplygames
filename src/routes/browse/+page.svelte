@@ -2,7 +2,7 @@
 	import type { PageData } from './$types';
 	import DealLastChange from '$lib/components/DealLastChange.svelte';
 	import { page } from '$app/stores';
-	import { goto, invalidateAll } from '$app/navigation';
+	import { goto } from '$app/navigation';
 
 	export let data: PageData;
 	let isDisabled: boolean = false;
@@ -45,8 +45,7 @@
 			$page.url.searchParams.delete('title');
 		}
 
-		await goto(`${$page.url.href}`);
-		await invalidateAll();
+		await goto(`${$page.url.href}`, { invalidateAll: true });
 	}
 
 	const previousPage = async () => {
