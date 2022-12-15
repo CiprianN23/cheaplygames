@@ -14,8 +14,8 @@
 	},
 	"devDependencies": {
 		"@iconify-json/bi": "^1.1.12",
-		"@sveltejs/adapter-vercel": "next",
-		"@sveltejs/kit": "next",
+		"@sveltejs/adapter-vercel": "^1.0.0",
+		"@sveltejs/kit": "^1.0.0",
 		"@unocss/core": "^0.47.6",
 		"@unocss/preset-icons": "^0.47.6",
 		"@unocss/preset-web-fonts": "^0.47.6",
