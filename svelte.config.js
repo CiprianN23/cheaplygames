@@ -9,7 +9,7 @@ const config = {
 
 	kit: {
 		adapter: vercel({
-			edge: false,
+			edge: true,
 
 			external: [],
 
