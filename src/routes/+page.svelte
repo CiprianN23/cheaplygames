@@ -16,7 +16,7 @@
 </div>
 
 <div class="more-deals">
-	Go to <a data-sveltekit-prefetch href="/browse">browse</a> for even more deals!
+	Go to <a href="/browse">browse</a> for even more deals!
 </div>
 
 <style>

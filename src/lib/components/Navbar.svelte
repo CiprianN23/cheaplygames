@@ -27,7 +27,7 @@
 		on:click={toggleButton}
 	/>
 
-	<nav data-sveltekit-prefetch>
+	<nav>
 		<ul id="primary-navigation" class="primary-navigation flex" data-visible={isMenuActive}>
 			{#each nav as item}
 				<li>

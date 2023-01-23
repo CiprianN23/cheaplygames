@@ -1,6 +1,6 @@
 import type { Actions } from './$types';
 import { PRIVATE_EMAIL } from '$env/static/private';
-import { invalid } from '@sveltejs/kit';
+import { fail } from '@sveltejs/kit';
 
 export const actions: Actions = {
 	default: async ({ request }) => {
@@ -14,7 +14,7 @@ export const actions: Actions = {
 		);
 
 		if (!emailRegex.test(email?.toString() ?? '')) {
-			return invalid(400, { invalidEmail: true, badResponse: false, success: false });
+			return fail(400, { invalidEmail: true, badResponse: false, success: false });
 		}
 
 		const response = await fetch('https://mazi.ro/contact-submit.php', {
@@ -24,7 +24,7 @@ export const actions: Actions = {
 		});
 
 		if (!response.ok) {
-			return invalid(400, { invalidEmail: false, badResponse: true, success: false });
+			return fail(400, { invalidEmail: false, badResponse: true, success: false });
 		}
 
 		return { invalidEmail: false, badResponse: false, success: true };

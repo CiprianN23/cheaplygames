@@ -7,7 +7,7 @@
 
 <div class="message-container">
 	{#if form?.success}
-		<Message message="Contact submitted successfully!" messageType="success-msg" />
+		<Message message="Contact form submitted successfully!" messageType="success-msg" />
 	{/if}
 	{#if form?.invalidEmail}
 		<Message message="Email address is not valid!" messageType="error-msg" />
