@@ -3,6 +3,9 @@
 	import DealLastChange from '$lib/components/DealLastChange.svelte';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import AddTableARIA from '$lib/addtablearia';
+	import { onMount } from 'svelte';
+	import { GameVendorsStore } from '$lib/stores';
 
 	export let data: PageData;
 	let isDisabled: boolean = false;
@@ -10,6 +13,7 @@
 	let sortBy: string = 'Deal Rating';
 	let desc: number = 0;
 	let selectedValue: string = 'Deal Rating';
+	let gameVendors = $GameVendorsStore;
 
 	let currentPage: number = 0;
 
@@ -68,6 +72,11 @@
 		sortBy = column;
 		await refreshDeals();
 	}
+
+	onMount(() => {
+		AddTableARIA();
+		console.log(gameVendors);
+	})
 </script>
 
 <div class="container">
@@ -101,69 +110,67 @@
 	</div>
 
 	<table class="deals-table">
-		<thead>
+		<tr>
+			<th
+				on:click={async () => await sortByColumn('Store')}
+				class:headerSortDown={desc === 0 && sortBy === 'Store'}
+				class:headerSortUp={desc === 1 && sortBy === 'Store'}>Store</th
+			>
+			<th
+				on:click={async () => await sortByColumn('Savings')}
+				class:headerSortDown={desc === 0 && sortBy === 'Savings'}
+				class:headerSortUp={desc === 1 && sortBy === 'Savings'}>Savings</th
+			>
+			<th
+				on:click={async () => await sortByColumn('Price')}
+				class:headerSortDown={desc === 0 && sortBy === 'Price'}
+				class:headerSortUp={desc === 1 && sortBy === 'Price'}>Price</th
+			>
+			<th
+				on:click={async () => await sortByColumn('Title')}
+				class:headerSortDown={desc === 0 && sortBy === 'Title'}
+				class:headerSortUp={desc === 1 && sortBy === 'Title'}>Title</th
+			>
+			<th
+				on:click={async () => await sortByColumn('Deal Rating')}
+				class:headerSortDown={desc === 0 && sortBy === 'Deal Rating'}
+				class:headerSortUp={desc === 1 && sortBy === 'Deal Rating'}>Deal Rating</th
+			>
+			<th
+				on:click={async () => await sortByColumn('recent')}
+				class:headerSortDown={desc === 0 && sortBy === 'recent'}
+				class:headerSortUp={desc === 1 && sortBy === 'recent'}>Last Change</th
+			>
+		</tr>
+		{#each data.deals as deal}
 			<tr>
-				<th
-					on:click={async () => await sortByColumn('Store')}
-					class:headerSortDown={desc === 0 && sortBy === 'Store'}
-					class:headerSortUp={desc === 1 && sortBy === 'Store'}>Store</th
-				>
-				<th
-					on:click={async () => await sortByColumn('Savings')}
-					class:headerSortDown={desc === 0 && sortBy === 'Savings'}
-					class:headerSortUp={desc === 1 && sortBy === 'Savings'}>Savings</th
-				>
-				<th
-					on:click={async () => await sortByColumn('Price')}
-					class:headerSortDown={desc === 0 && sortBy === 'Price'}
-					class:headerSortUp={desc === 1 && sortBy === 'Price'}>Price</th
-				>
-				<th
-					on:click={async () => await sortByColumn('Title')}
-					class:headerSortDown={desc === 0 && sortBy === 'Title'}
-					class:headerSortUp={desc === 1 && sortBy === 'Title'}>Title</th
-				>
-				<th
-					on:click={async () => await sortByColumn('Deal Rating')}
-					class:headerSortDown={desc === 0 && sortBy === 'Deal Rating'}
-					class:headerSortUp={desc === 1 && sortBy === 'Deal Rating'}>Deal Rating</th
-				>
-				<th
-					on:click={async () => await sortByColumn('recent')}
-					class:headerSortDown={desc === 0 && sortBy === 'recent'}
-					class:headerSortUp={desc === 1 && sortBy === 'recent'}>Last Change</th
-				>
-			</tr>
-		</thead>
-		<tbody>
-			{#each data.deals as deal}
-				<tr>
-					<td>
-						<img src={cheapSharkStoreLogoLink + (Number(deal.storeID) - 1) + '.png'} alt="" />
-					</td>
-					<td>
-						{Math.round(Number(deal.savings))}%
-					</td>
-					<td>
+				<td data-cell="store">
+					<img src={cheapSharkStoreLogoLink + (Number(deal.storeID) - 1) + '.png'} alt="{gameVendors[Number(deal.storeID) - 1].storeName}" title="{gameVendors[Number(deal.storeID) - 1].storeName}"/>
+				</td>
+				<td data-cell="savings">
+					{Math.round(Number(deal.savings))}%
+				</td>
+				<td data-cell="price">
+					<span>
 						${deal.salePrice}
 						{#if deal.isOnSale === '1'}
 							<s>${deal.normalPrice}</s>
 						{/if}
-					</td>
-					<td>
-						<a href={cheapSharkDealLink + deal.dealID}>{deal.title}</a>
-					</td>
-					<td>
-						{deal.dealRating}
-					</td>
-					<td>
-						<DealLastChange time={new Date(deal.lastChange * 1000)} />
-					</td>
-				</tr>
-			{:else}
-				Loading....
-			{/each}
-		</tbody>
+					</span>
+				</td>
+				<td data-cell="title">
+					<a href={cheapSharkDealLink + deal.dealID}>{deal.title}</a>
+				</td>
+				<td data-cell="deal rating">
+					{deal.dealRating}
+				</td>
+				<td data-cell="last change">
+					<DealLastChange time={new Date(deal.lastChange * 1000)} />
+				</td>
+			</tr>
+		{:else}
+			Loading....
+		{/each}
 	</table>
 
 	<nav>
@@ -203,10 +210,6 @@
 		display: none;
 	}
 
-	td > img {
-		display: inline;
-	}
-
 	#orderBy {
 		margin-left: 0.2rem;
 		border: 1px solid #ced4da;
@@ -233,8 +236,8 @@
 	}
 
 	.container {
-		width: 90%;
-		margin: 50px auto;
+		width: min(900px, 100% - 3rem);
+		margin-inline: auto;
 	}
 
 	.disabled {
@@ -247,59 +250,6 @@
 		text-align: center;
 		color: var(--primary-text-color);
 		font-size: 0.95rem;
-	}
-
-	.deals-table {
-		table-layout: fixed;
-		width: 100%;
-		border-collapse: collapse;
-		margin: 25px 0;
-		font-size: 0.9em;
-		min-width: 400px;
-		background-color: var(--tertiary-color);
-	}
-
-	.deals-table thead tr {
-		background-color: var(--secondary-color);
-		color: #000;
-		text-align: left;
-		font-weight: bold;
-	}
-
-	.deals-table th:hover {
-		text-decoration: underline;
-	}
-
-	.deals-table th,
-	.deals-table td {
-		padding-bottom: 12px;
-		padding-top: 12px;
-		padding-left: 10px;
-	}
-
-	.deals-table tbody tr {
-		border-bottom: 1px solid #fff;
-	}
-
-	.deals-table tbody tr:last-of-type {
-		border-bottom: 2px solid var(--secondary-color);
-	}
-
-	.deals-table thead th:nth-child(1),
-	.deals-table thead th:nth-child(2),
-	.deals-table thead th:nth-child(3),
-	.deals-table thead th:nth-child(5),
-	.deals-table thead th:nth-child(6) {
-		width: 12%;
-	}
-
-	.deals-table thead th:nth-child(4) {
-		width: fit-content;
-	}
-
-	.deals-table td s {
-		margin: 10px 10px;
-		font-size: 11px;
 	}
 
 	#pagination {
@@ -329,13 +279,36 @@
 		color: var(--accent-color);
 	}
 
-	.deals-table a {
-		text-decoration: none;
-		color: #000;
+	.deals-table {
+		width: 100%;
+		border-collapse: collapse;
+		background-color: var(--tertiary-color);
+		margin-top: 1rem;
 	}
 
-	.deals-table a:hover {
-		color: var(--accent-color);
+	.deals-table tr:nth-of-type(2n) {
+		background: hsl(0 0% 0% / 0.075);
+	}
+
+	.deals-table th {
+		background-color: var(--secondary-color);
+		color: #000;
+		text-align: left;
+		font-weight: bold;
+	}
+
+	.deals-table th:hover {
+		text-decoration: underline;
+	}
+
+	.deals-table th,
+	.deals-table td {
+		padding: 1rem;
+		text-align: left;
+	}
+
+	.deals-table a {
+		text-decoration: underline;
 	}
 
 	.headerSortDown:after,
@@ -358,69 +331,30 @@
 		padding-left: 20px;
 	}
 
-	@media only screen and (max-width: 760px),
-		(min-device-width: 768px) and (max-device-width: 1024px) {
-		.container {
-			width: 100%;
-		}
-		.deals-table,
-		.deals-table thead,
-		.deals-table tbody,
-		.deals-table th,
-		.deals-table td,
-		.deals-table tr {
-			display: block;
-		}
-
-		.deals-table thead tr {
-			position: absolute;
-			top: -9999px;
-			left: -9999px;
-		}
-
-		.deals-table tr {
-			margin: 0 0 1rem 0;
-		}
-
-		.deals-table tr:nth-child(odd),
-		.deals-table tr:nth-child(odd) a {
-			background: var(--secondary-color);
-			color: var(--primary-text-color);
+	@media only screen and (max-width: 1024px) {
+		.deals-table th {
+			display: none;
 		}
 
 		.deals-table td {
-			border: none;
-			border-bottom: 1px solid #eee;
-			position: relative;
-			padding-left: 50%;
+			display: grid;
+			gap: 0.5rem;
+			grid-template-columns: 15ch auto;
+			padding: 0.5rem 1rem;
 		}
 
-		.deals-table td:before {
-			position: absolute;
-			top: 0;
-			left: 6px;
-			width: 45%;
-			padding-right: 10px;
-			white-space: nowrap;
+		.deals-table td:first-child {
+			padding-top: 2rem;
 		}
 
-		.deals-table td:nth-of-type(1):before {
-			content: 'Store';
+		.deals-table td:last-child {
+			padding-bottom: 2rem;
 		}
-		.deals-table td:nth-of-type(2):before {
-			content: 'Savings';
-		}
-		.deals-table td:nth-of-type(3):before {
-			content: 'Price';
-		}
-		.deals-table td:nth-of-type(4):before {
-			content: 'Title';
-		}
-		.deals-table td:nth-of-type(5):before {
-			content: 'Deal Rating';
-		}
-		.deals-table td:nth-of-type(6):before {
-			content: 'Last change';
+
+		td:before {
+			content: attr(data-cell) ': ';
+			font-weight: 700;
+			text-transform: capitalize;
 		}
 
 		.filtering {
