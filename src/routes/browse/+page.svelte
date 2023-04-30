@@ -76,7 +76,7 @@
 	onMount(() => {
 		AddTableARIA();
 		console.log(gameVendors);
-	})
+	});
 </script>
 
 <div class="container">
@@ -145,7 +145,11 @@
 		{#each data.deals as deal}
 			<tr>
 				<td data-cell="store">
-					<img src={cheapSharkStoreLogoLink + (Number(deal.storeID) - 1) + '.png'} alt="{gameVendors[Number(deal.storeID) - 1].storeName}" title="{gameVendors[Number(deal.storeID) - 1].storeName}"/>
+					<img
+						src={cheapSharkStoreLogoLink + (Number(deal.storeID) - 1) + '.png'}
+						alt={gameVendors[Number(deal.storeID) - 1].storeName}
+						title={gameVendors[Number(deal.storeID) - 1].storeName}
+					/>
 				</td>
 				<td data-cell="savings">
 					{Math.round(Number(deal.savings))}%

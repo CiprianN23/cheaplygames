@@ -1,6 +1,6 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import UnoCSS from 'unocss/vite';
-import extractorSvelte from '@unocss/extractor-svelte'
+import extractorSvelte from '@unocss/extractor-svelte';
 import presetIcons from '@unocss/preset-icons';
 import presetWebFonts from '@unocss/preset-web-fonts';
 
