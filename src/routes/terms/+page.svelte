@@ -1,3 +1,8 @@
+<svelte:head>
+	<title>CheaplyGames - Terms & Conditions</title>
+	<meta name="description" content="CheaplyGames's terms and conditions">
+</svelte:head>
+
 <div class="content">
 	<iframe
 		src="https://www.termsfeed.com/live/b3d2263b-3c3d-427e-96bc-4e958a172c2c"

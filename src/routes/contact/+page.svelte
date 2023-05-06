@@ -5,6 +5,11 @@
 	export let form: ActionData;
 </script>
 
+<svelte:head>
+	<title>CheaplyGames - Contact</title>
+	<meta name="description" content="Contact us page for CheaplyGames">
+</svelte:head>
+
 <div class="message-container">
 	{#if form?.success}
 		<Message message="Contact form submitted successfully!" messageType="success-msg" />

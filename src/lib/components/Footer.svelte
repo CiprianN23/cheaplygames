@@ -5,11 +5,12 @@
 		</div>
 		<p>Most cheap games.</p>
 		<div class="icons">
-			<a href="https://twitter.com/cheaply_games" target="_blank" rel="noreferrer">
+			<a href="https://twitter.com/cheaply_games" aria-label="CheaplyGames twitter page" target="_blank" rel="noreferrer">
 				<div class="i-bi-twitter" />
 			</a>
 			<a
 				href="https://github.com/CiprianN23/cheaplygames"
+				aria-label="CheaplyGames github public repository"
 				target="_blank"
 				id="github"
 				rel="noreferrer"
@@ -28,7 +29,7 @@
 		<br />
 		<p class="footer-notice">
 			This website uses
-			<a href="https://apidocs.cheapshark.com/" target="_blank" rel="noreferrer">CheapShark API</a>
+			<a href="https://apidocs.cheapshark.com/" aria-label="cheapshark API documentation" target="_blank" rel="noreferrer">CheapShark API</a>
 		</p>
 		<br />
 		<p class="footer-notice">

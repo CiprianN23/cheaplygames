@@ -7,6 +7,11 @@
 	import StoreCard from '$lib/components/StoreCard.svelte';
 </script>
 
+<svelte:head>
+	<title>CheaplyGames - The place to find game deals</title>
+	<meta name="description" content="Summary of popular on going deals from popular online game stores">
+</svelte:head>
+
 <div class="stores">
 	{#each data.stores as store}
 		{#if store.isActive === 1 && visibleShops.includes(Number(store.storeID))}

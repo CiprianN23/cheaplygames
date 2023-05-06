@@ -79,6 +79,11 @@
 	});
 </script>
 
+<svelte:head>
+	<title>CheaplyGames - Browse</title>
+	<meta name="description" content="Browse and filter on going game deals from different online game stores">
+</svelte:head>
+
 <div class="container">
 	<div class="filtering">
 		<div>
@@ -295,7 +300,7 @@
 	}
 
 	.deals-table th {
-		background-color: var(--secondary-color);
+		background-color: rgb(146, 151, 160);
 		color: #000;
 		text-align: left;
 		font-weight: bold;
