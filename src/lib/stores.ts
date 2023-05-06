@@ -1,3 +1,3 @@
 import { writable } from 'svelte/store';
 
-export const GameVendorsStore = writable();
+export const GameVendorsStore = writable<any[]>();
