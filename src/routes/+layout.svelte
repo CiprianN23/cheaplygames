@@ -3,10 +3,6 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import type { LayoutData } from './$types';
 	import { GameVendorsStore } from '$lib/stores';
-	import { dev } from '$app/environment';
-	import { inject } from '@vercel/analytics';
-
-	inject({ mode: dev ? 'development' : 'production' });
 
 	export let data: LayoutData;
 	$: GameVendorsStore.set(data.gameStores);
