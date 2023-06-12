@@ -1,0 +1,26 @@
+.error,
+.success,
+.info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 3px 3px 3px 3px;
+}
+.info {
+    color: #059;
+    background-color: #bef;
+}
+.success {
+    color: #270;
+    background-color: #dff2bf;
+}
+.error {
+    color: #d8000c;
+    background-color: #ffbaba;
+}
+
+.message {
+    margin-left: 7px;
+}

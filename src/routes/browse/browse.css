@@ -1,0 +1,170 @@
+input[type='search'] {
+    outline: 0;
+    border: 0;
+    height: 1.5rem;
+    padding-left: 1rem;
+    border-radius: 2em;
+    transition: all 0.3s cubic-bezier(0, 0, 0.43, 1.49);
+    transition-property: width, border-radius;
+    color: var(--secondary-text-color);
+}
+
+.hidden {
+    display: none;
+}
+
+#orderBy {
+    margin-left: 0.2rem;
+    border: 1px solid #ced4da;
+    border-radius: 2em;
+    color: #000;
+}
+
+.filtering {
+    display: flex;
+    color: var(--primary-text-color);
+}
+
+.filtering button {
+    display: inline-block;
+    font-weight: bold;
+    padding: 0.1em 1em;
+    margin: 0 0.3em 0.3em 0;
+    border: none;
+    border-radius: 2em;
+    text-decoration: none;
+    color: var(--secondary-text-color);
+    background-color: var(--accent-color);
+    text-align: center;
+}
+
+.container {
+    width: min(900px, 100% - 3rem);
+    margin-inline: auto;
+}
+
+.disabled {
+    cursor: none;
+    background-color: #999 !important;
+    color: var(--primary-text-color) !important;
+}
+
+.page {
+    text-align: center;
+    color: var(--primary-text-color);
+    font-size: 0.95rem;
+}
+
+#pagination {
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #eee;
+    margin-top: 1em;
+    padding-top: 0.5em;
+    list-style: none;
+}
+
+#pagination li {
+    margin: 0 1px;
+}
+
+#pagination button {
+    color: var(--primary-text-color);
+    background-color: var(--primary-color);
+    display: block;
+    padding: 0.5em 1em;
+    border: 1px solid #999;
+    border-radius: 0.2em;
+    text-decoration: none;
+}
+
+#pagination button:hover {
+    color: var(--accent-color);
+}
+
+.deals-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--tertiary-color);
+    margin-top: 1rem;
+}
+
+.deals-table tbody tr:nth-of-type(2n) {
+    background: hsl(0 0% 0% / 0.075);
+}
+
+.deals-table thead th {
+    background-color: rgb(146, 151, 160);
+    color: #000;
+    text-align: left;
+    font-weight: bold;
+}
+
+.deals-table thead th:hover {
+    text-decoration: underline;
+}
+
+.deals-table th,
+.deals-table td {
+    padding: 1rem;
+    text-align: left;
+}
+
+.deals-table a {
+    text-decoration: underline;
+}
+
+.headerSortDown:after,
+.headerSortUp:after {
+    content: ' ';
+    position: relative;
+    left: 10px;
+    border: 7px solid transparent;
+}
+.headerSortDown:after {
+    top: 10px;
+    border-top-color: silver;
+}
+.headerSortUp:after {
+    bottom: 15px;
+    border-bottom-color: silver;
+}
+.headerSortDown,
+.headerSortUp {
+    padding-left: 20px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .deals-table th {
+        display: none;
+    }
+
+    .deals-table td {
+        display: grid;
+        gap: 0.5rem;
+        grid-template-columns: 15ch auto;
+        padding: 0.5rem 1rem;
+    }
+
+    .deals-table td:first-child {
+        padding-top: 2rem;
+    }
+
+    .deals-table td:last-child {
+        padding-bottom: 2rem;
+    }
+
+    td:before {
+        content: attr(data-cell) ': ';
+        font-weight: 700;
+        text-transform: capitalize;
+    }
+
+    .filtering {
+        margin-left: 0.5rem;
+    }
+
+    .hidden {
+        display: block;
+    }
+}
