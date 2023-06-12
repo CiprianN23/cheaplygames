@@ -8,7 +8,7 @@ export default component$(() => {
             <div class="content">
                 <iframe
                     src="https://www.termsfeed.com/live/02601daa-defe-4998-a6c2-2f99d9543dfe"
-                    title="Privacy Policy"
+                    title="Privacy Policy" 
                 />
             </div>
         </>
