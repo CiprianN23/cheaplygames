@@ -1,7 +1,7 @@
-import { component$, Resource, useStylesScoped$ } from '@builder.io/qwik';
+import { component$, useStylesScoped$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import { StoreCard } from '~/components/storecard/storecard';
-import styles from './index.css?inline'
+import styles from './index.css?inline';
 import type IGameStore from '~/interfaces/GameStore';
 import { useGameStores } from './layout';
 
@@ -10,7 +10,7 @@ export default component$(() => {
 
     const visibleShops = ['1', '3', '7', '11', '15', '21', '23', '25', '27'];
 
-    function storeIsVisbile(value: IGameStore) {
+    function storeIsVisible(value: IGameStore) {
         return value.isActive === 1 && visibleShops.includes(value.storeID);
     }
 
@@ -19,21 +19,9 @@ export default component$(() => {
     return (
         <>
             <div class="stores">
-                <Resource
-                    value={gameStores}
-                    onPending={() => <p>Loading....</p>}
-                    onResolved={(stores) => (
-                        <>
-                            {stores.filter(storeIsVisbile).map((store, i) => (
-                                <StoreCard
-                                    key={i}
-                                    storeId={store.storeID}
-                                    storeName={store.storeName}
-                                />
-                            ))}
-                        </>
-                    )}
-                />
+                {gameStores.value.filter(storeIsVisible).map((store, i) => (
+                    <StoreCard key={i} storeId={store.storeID} storeName={store.storeName} />
+                ))}
             </div>
         </>
     );
