@@ -23,7 +23,7 @@ export const useFormLoader = routeLoader$<InitialValues<ContactForm>>(() => ({
 }));
 
 export const useFormAction = formAction$<ContactForm>(async (values, { env }) => {
-    const response = await fetch('https://mazi.ro/contact-submit.ph', {
+    const response = await fetch('https://mazi.ro/contact-submit.php', {
         method: 'POST',
         headers: { 'Content-type': 'application/x-www-form-urlencoded' },
         body: `name=${values.name}&email=${values.email}&message=${values.message}&myEmail=${env.get('PRIVATE_EMAIL')}`,
@@ -33,7 +33,7 @@ export const useFormAction = formAction$<ContactForm>(async (values, { env }) =>
         return { status: 'error', message: 'An error has occurred!' }
     }
 
-    return { status: 'success', message: 'Contact form successfuly submited!' }
+    return { status: 'success', message: 'Contact form successfully submitted!' }
 }, zodForm$(contactSchema));
 
 export default component$(() => {
