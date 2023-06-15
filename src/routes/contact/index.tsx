@@ -1,5 +1,5 @@
 import { component$, useStylesScoped$ } from '@builder.io/qwik';
-import { routeLoader$, z } from '@builder.io/qwik-city';
+import { type DocumentHead, routeLoader$, z } from '@builder.io/qwik-city';
 import type { InitialValues } from '@modular-forms/qwik';
 import { formAction$, useForm, zodForm$ } from '@modular-forms/qwik';
 import styles from './contact.css?inline';
@@ -89,3 +89,13 @@ export default component$(() => {
         </Form>
     );
 });
+
+export const head: DocumentHead = {
+    title: 'CheaplyGames - Contact',
+    meta: [
+        {
+            name: 'description',
+            content: 'Contact us page for CheaplyGames',
+        },
+    ],
+};

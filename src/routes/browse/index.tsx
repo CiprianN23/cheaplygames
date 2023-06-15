@@ -6,7 +6,7 @@ import {
     useStylesScoped$,
     $,
 } from '@builder.io/qwik';
-import { useLocation, useNavigate } from '@builder.io/qwik-city';
+import { type DocumentHead, useLocation, useNavigate } from '@builder.io/qwik-city';
 import { DealLastChange } from '~/components/deallastchange/deallastchange';
 import type GameDeal from '~/interfaces/GameDeal';
 import { useGameStores } from '../layout';
@@ -305,3 +305,13 @@ export default component$(() => {
         </>
     );
 });
+
+export const head: DocumentHead = {
+    title: 'CheaplyGames - Browse',
+    meta: [
+        {
+            name: 'description',
+            content: 'Browse and filter on going game deals from different online game stores',
+        },
+    ],
+};

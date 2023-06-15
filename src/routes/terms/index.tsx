@@ -1,5 +1,6 @@
 import { component$, useStylesScoped$ } from '@builder.io/qwik';
 import styles from './terms.css?inline';
+import type { DocumentHead } from '@builder.io/qwik-city';
 
 export default component$(() => {
     useStylesScoped$(styles);
@@ -14,3 +15,13 @@ export default component$(() => {
         </>
     );
 });
+
+export const head: DocumentHead = {
+    title: 'CheaplyGames - Terms & Conditions',
+    meta: [
+        {
+            name: 'description',
+            content: "CheaplyGames's terms and conditions",
+        },
+    ],
+};
