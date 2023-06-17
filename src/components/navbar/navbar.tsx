@@ -1,5 +1,6 @@
 import { component$, useSignal, useStylesScoped$ } from '@builder.io/qwik';
 import styles from './navbar.css?inline';
+import { Link } from '@builder.io/qwik-city';
 
 export const NavBar = component$(() => {
     useStylesScoped$(styles);
@@ -16,7 +17,7 @@ export const NavBar = component$(() => {
         <>
             <header class="primary-header flex">
                 <div>
-                    <a href="/">
+                    <Link href="/">
                         <img
                             src="/logo-no-background.svg"
                             alt="logo"
@@ -24,7 +25,7 @@ export const NavBar = component$(() => {
                             width={150}
                             height={50}
                         />
-                    </a>
+                    </Link>
                 </div>
 
                 <button
@@ -40,7 +41,7 @@ export const NavBar = component$(() => {
                     <ul id="primary-navigation" class="primary-navigation flex" data-visible={`${isMenuActive.value}`}>
                         {navItems.map((item) => (
                             <li key={item.id}>
-                                <a href={item.path}>{item.title}</a>
+                                <Link href={item.path}>{item.title}</Link>
                             </li>
                         ))}
                     </ul>
