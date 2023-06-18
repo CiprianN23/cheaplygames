@@ -134,6 +134,15 @@ body{
 	width: min(100% - 3rem, 55ch)
 }
 
+@media (max-width: 600px) {
+.\[\[data-visible\=\^false\^\]\]\{maxw600px\:transform\:translateX\(100\%\)\} [data-visible='false']{
+	transform: translateX(100%)
+}
+.\[\[data-visible\=\^true\^\]\]\{maxw600px\:transform\:translateX\(0\%\)\} [data-visible='true']{
+	transform: translateX(0%)
+}
+}
+
 @media (max-width: 35em) {
 .maxw35em\:aspect-ratio\:1{
 	aspect-ratio: 1
@@ -173,12 +182,6 @@ body{
 }
 .maxw35em\:top\:2rem{
 	top: 2rem
-}
-.\[\[data-visible\=\^false\^\]\]\{maxw35em\:transform\:translateX\(100\%\)\} [data-visible='false']{
-	transform: translateX(100%)
-}
-.\[\[data-visible\=\^true\^\]\]\{maxw35em\:transform\:translateX\(0\%\)\} [data-visible='true']{
-	transform: translateX(0%)
 }
 .maxw35em\:width\:2rem{
 	width: 2rem

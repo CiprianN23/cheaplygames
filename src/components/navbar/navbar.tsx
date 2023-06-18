@@ -28,14 +28,13 @@ export const NavBar = component$(() => {
 
                 <nav class="">
                     <ul
-                        class="display:flex gap:1rem list-style:none background:$background maxw35em:gap:3em maxw35em:position:fixed maxw35em:z-index:1000 maxw35em:inset:0_0_0_30%  maxw35em:flex-direction:column maxw35em:padding:min(30vh,10rem)_2em [[data-visible=^false^]]{maxw35em:transform:translateX(100%)} [[data-visible=^true^]]{maxw35em:transform:translateX(0%)}"
+                        class="display:flex gap:1rem list-style:none background:$background maxw35em:gap:3em maxw35em:position:fixed maxw35em:z-index:1000 maxw35em:inset:0_0_0_30%  maxw35em:flex-direction:column maxw35em:padding:min(30vh,10rem)_2em [[data-visible=^false^]]{maxw600px:transform:translateX(100%)} [[data-visible=^true^]]{maxw600px:transform:translateX(0%)}"
                         id="primary-navigation"
                         data-visible={`${isMenuActive.value}`}
                     >
                         {navItems.map((item) => (
                             <li key={item.id}>
                                 <Link class="text-decoration:none" href={item.path}>
-                                    {' '}
                                     {item.title}
                                 </Link>
                             </li>
