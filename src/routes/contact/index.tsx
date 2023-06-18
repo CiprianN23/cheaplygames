@@ -1,8 +1,7 @@
-import { component$, useStylesScoped$ } from '@builder.io/qwik';
+import { component$ } from '@builder.io/qwik';
 import { type DocumentHead, routeLoader$, z } from '@builder.io/qwik-city';
 import type { InitialValues } from '@modular-forms/qwik';
 import { formAction$, useForm, zodForm$ } from '@modular-forms/qwik';
-import styles from './contact.css?inline';
 import { FeedbackMessage } from '~/components/feedbackmessage/feedbackmessage';
 
 const contactSchema = z.object({
@@ -37,8 +36,6 @@ export const useFormAction = formAction$<ContactForm>(async (values, { env }) =>
 }, zodForm$(contactSchema));
 
 export default component$(() => {
-    useStylesScoped$(styles);
-
     const [contactForm, { Form, Field }] = useForm<ContactForm>({
         loader: useFormLoader(),
         action: useFormAction(),

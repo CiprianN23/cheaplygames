@@ -1,11 +1,8 @@
-import { component$, useStylesScoped$ } from '@builder.io/qwik';
+import { component$} from '@builder.io/qwik';
 import { BiTwitter } from '../icons/BiTwitter';
 import { BiGithub } from '../icons/BiGithub';
-import styles from './footer.css?inline';
 
 export const Footer = component$(() => {
-    useStylesScoped$(styles);
-
     return (
         <>
             <footer>

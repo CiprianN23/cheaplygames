@@ -3,18 +3,14 @@ import {
     component$,
     useResource$,
     useSignal,
-    useStylesScoped$,
     $,
 } from '@builder.io/qwik';
 import { type DocumentHead, useLocation, useNavigate } from '@builder.io/qwik-city';
 import { DealLastChange } from '~/components/deallastchange/deallastchange';
 import type GameDeal from '~/interfaces/GameDeal';
 import { useGameStores } from '../layout';
-import styles from './browse.css?inline';
 
 export default component$(() => {
-    useStylesScoped$(styles);
-
     const loc = useLocation();
     const nav = useNavigate();
 

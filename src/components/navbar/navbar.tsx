@@ -1,9 +1,7 @@
-import { component$, useSignal, useStylesScoped$ } from '@builder.io/qwik';
-import styles from './navbar.css?inline';
+import { component$, useSignal } from '@builder.io/qwik';
+import { Link } from '@builder.io/qwik-city';
 
 export const NavBar = component$(() => {
-    useStylesScoped$(styles);
-
     const isMenuActive = useSignal(false);
 
     const navItems = [
@@ -14,33 +12,32 @@ export const NavBar = component$(() => {
 
     return (
         <>
-            <header class="primary-header flex">
+            <header class="display:flex gap:1rem align-items:center justify-content:space-between">
                 <div>
-                    <a href="/">
-                        <img
-                            src="/logo-no-background.svg"
-                            alt="logo"
-                            class="logo"
-                            width={150}
-                            height={50}
-                        />
-                    </a>
+                    <img src="" alt="logo" width={150} height={50} class="margin:2rem" />
                 </div>
 
                 <button
-                    class="mobile-nav-toggle"
-                    type="button"
-                    aria-label="Menu"
+                    class="color:$text display:none border:0 maxw35em:display:block maxw35em:background-color:transparent maxw35em:background-image:url(/menu.svg) maxw35em:background-repeat:no-repeat maxw35em:position:absolute maxw35em:z-index:9999 maxw35em:width:2rem maxw35em:aspect-ratio:1 maxw35em:top:2rem maxw35em:right:2rem"
                     aria-controls="primary-navigation"
-                    aria-expanded={isMenuActive.value}
-                    onClick$={() => isMenuActive.value = !isMenuActive.value}
-                ></button>
+                    aria-expanded={`${isMenuActive.value}`}
+                    onClick$={() => (isMenuActive.value = !isMenuActive.value)}
+                >
+                    <span class="sr-only">Menu</span>
+                </button>
 
-                <nav>
-                    <ul id="primary-navigation" class="primary-navigation flex" data-visible={`${isMenuActive.value}`}>
+                <nav class="">
+                    <ul
+                        class="display:flex gap:1rem list-style:none background:$background maxw35em:gap:3em maxw35em:position:fixed maxw35em:z-index:1000 maxw35em:inset:0_0_0_30%  maxw35em:flex-direction:column maxw35em:padding:min(30vh,10rem)_2em [[data-visible=^false^]]{maxw35em:transform:translateX(100%)} [[data-visible=^true^]]{maxw35em:transform:translateX(0%)}"
+                        id="primary-navigation"
+                        data-visible={`${isMenuActive.value}`}
+                    >
                         {navItems.map((item) => (
                             <li key={item.id}>
-                                <a href={item.path}>{item.title}</a>
+                                <Link class="text-decoration:none" href={item.path}>
+                                    {' '}
+                                    {item.title}
+                                </Link>
                             </li>
                         ))}
                     </ul>

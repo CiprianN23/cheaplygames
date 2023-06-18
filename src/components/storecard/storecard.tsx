@@ -1,5 +1,4 @@
-import { component$, useResource$, Resource, useStylesScoped$ } from '@builder.io/qwik';
-import styles from './storecard.css?inline'
+import { component$, useResource$, Resource } from '@builder.io/qwik';
 import { StoreDeal } from '../storedeal/storedeal';
 import type GameDeal from '~/interfaces/GameDeal';
 
@@ -9,8 +8,6 @@ interface ItemProps {
 }
 
 export const StoreCard = component$<ItemProps>((props) => {
-    useStylesScoped$(styles);
-
     const gameDeals = useResource$<GameDeal[]>(async ({ cleanup }) => {
 
         const controller = new AbortController();

@@ -1,0 +1,192 @@
+:root {
+	--text: hsl(200, 60%, 1%);
+	--background: hsl(205, 60%, 96%);
+	--primary: hsl(138, 61%, 30%);
+	--secondary: hsl(0, 0%, 100%);
+	--accent: hsl(206, 61%, 70%);
+	--fontSize100: clamp(0.63rem, calc(0.84rem + -0.27vw), 0.78rem);
+	--fontSize200: clamp(0.88rem, calc(0.96rem + -0.09vw), 0.94rem);
+	--fontSize300: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
+	--fontSize400: clamp(1.20rem, calc(1.06rem + 0.68vw), 1.59rem);
+	--fontSize500: clamp(1.62rem, calc(1.31rem + 1.53vw), 2.50rem);
+	--fontSize600: clamp(1.94rem, calc(1.39rem + 2.77vw), 3.53rem);
+	--fontSize700: clamp(2.33rem, calc(1.41rem + 4.63vw), 5.00rem);
+	--fontSize800: clamp(2.80rem, calc(1.32rem + 7.42vw), 7.07rem);
+}
+@media (prefers-color-scheme: dark) {
+:root {
+	--text: hsl(200, 60%, 99%);
+	--background: hsl(205, 60%, 4%);
+	--primary: hsl(138, 61%, 30%);
+	--secondary: hsl(0, 0%, 0%);
+	--accent: hsl(206, 61%, 70%);
+}
+}
+.align-content\:center{
+	align-content: center
+}
+.align-items\:center{
+	align-items: center
+}
+.background\:\$background{
+	background: var(--background)
+}
+body{
+	background-color: var(--background)
+}
+.border\:0{
+	border: 0
+}
+.sr-only{
+	border: 0 !important;
+}
+.sr-only{
+	clip: rect(1px,1px,1px,1px) !important;
+}
+.sr-only{
+	-webkit-clip-path: inset(50%) !important;
+}
+.sr-only{
+	-webkit-clip-path: inset(50%) !important;
+	        clip-path: inset(50%) !important;
+}
+body,
+.color\:\$text{
+	color: var(--text)
+}
+.display\:flex{
+	display: flex
+}
+.display\:none{
+	display: none
+}
+.flex-direction\:column{
+	flex-direction: column
+}
+.\[\*\]\{margin\:revert\;padding\:revert\;font\:revert\} *{
+	font: revert
+}
+body{
+	font-size: var(--fontSize400)
+}
+.\[h1\]\{font-size\:\$fontSize600\} h1{
+	font-size: var(--fontSize600)
+}
+.\[h2\]\{font-size\:\$fontSize500\} h2{
+	font-size: var(--fontSize500)
+}
+.gap\:1rem{
+	gap: 1rem
+}
+.sr-only{
+	height: 1px !important;
+}
+.justify-content\:space-between{
+	justify-content: space-between
+}
+.justify-content\:center{
+	justify-content: center
+}
+body{
+	line-height: 1.6
+}
+.\[h1\,h2\]\{line-height\:1\.1\} h1,
+.\[h1\,h2\]\{line-height\:1\.1\} h2{
+	line-height: 1.1
+}
+.list-style\:none{
+	list-style: none
+}
+.margin\:2rem{
+	margin: 2rem
+}
+.sr-only{
+	margin: -1px !important;
+}
+.\[\*\]\{margin\:revert\;padding\:revert\;font\:revert\} *{
+	margin: revert
+}
+.margin-inline\:auto{
+	margin-inline: auto
+}
+.sr-only{
+	overflow: hidden !important;
+}
+.sr-only{
+	padding: 0 !important;
+}
+.\[\*\]\{margin\:revert\;padding\:revert\;font\:revert\} *{
+	padding: revert
+}
+.sr-only{
+	position: absolute !important;
+}
+.text-decoration\:none{
+	text-decoration: none
+}
+.sr-only{
+	white-space: nowrap !important;
+}
+.sr-only{
+	width: 1px !important;
+}
+.width\:min\(100\%_-_3rem\,_55ch\){
+	width: min(100% - 3rem, 55ch)
+}
+
+@media (max-width: 35em) {
+.maxw35em\:aspect-ratio\:1{
+	aspect-ratio: 1
+}
+.maxw35em\:background-color\:transparent{
+	background-color: transparent
+}
+.maxw35em\:background-image\:url\(\/menu\.svg\){
+	background-image: url(/menu.svg)
+}
+.maxw35em\:background-repeat\:no-repeat{
+	background-repeat: no-repeat
+}
+.maxw35em\:display\:block{
+	display: block
+}
+.maxw35em\:flex-direction\:column{
+	flex-direction: column
+}
+.maxw35em\:gap\:3em{
+	gap: 3em
+}
+.maxw35em\:inset\:0_0_0_30\%{
+	inset: 0 0 0 30%
+}
+.maxw35em\:padding\:min\(30vh\,10rem\)_2em{
+	padding: min(30vh,10rem) 2em
+}
+.maxw35em\:position\:absolute{
+	position: absolute
+}
+.maxw35em\:position\:fixed{
+	position: fixed
+}
+.maxw35em\:right\:2rem{
+	right: 2rem
+}
+.maxw35em\:top\:2rem{
+	top: 2rem
+}
+.\[\[data-visible\=\^false\^\]\]\{maxw35em\:transform\:translateX\(100\%\)\} [data-visible='false']{
+	transform: translateX(100%)
+}
+.\[\[data-visible\=\^true\^\]\]\{maxw35em\:transform\:translateX\(0\%\)\} [data-visible='true']{
+	transform: translateX(0%)
+}
+.maxw35em\:width\:2rem{
+	width: 2rem
+}
+.maxw35em\:z-index\:9999{
+	z-index: 9999
+}
+.maxw35em\:z-index\:1000{
+	z-index: 1000
+}
+}

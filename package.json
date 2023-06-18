@@ -38,6 +38,7 @@
     "vite-tsconfig-paths": "4.2.0"
   },
   "dependencies": {
-    "@modular-forms/qwik": "^0.17.0"
+    "@modular-forms/qwik": "^0.17.1",
+    "@stylify/unplugin": "^0.6.2"
   }
 }

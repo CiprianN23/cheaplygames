@@ -1,5 +1,4 @@
-import { component$, useStylesScoped$ } from '@builder.io/qwik';
-import styles from './storedeal.css?inline'
+import { component$ } from '@builder.io/qwik';
 
 interface ItemProps {
     dealID: string;
@@ -10,8 +9,6 @@ interface ItemProps {
 }
 
 export const StoreDeal = component$<ItemProps>((props) => {
-    useStylesScoped$(styles);
-
     const cheapSharkRedirectLink = 'https://www.cheapshark.com/redirect?dealID=';
     const MAX_GAME_TITLE_LENGTH = 22;
 
