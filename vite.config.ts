@@ -9,7 +9,6 @@ const stylifyPlugin = stylifyVite({
 		{ files: ['src/**/*.tsx'], outputFile: 'src/styles/global.css' }
 	],
   compiler: {
-      mangleSelectors: process.env.STYLIFY_MANGLE_SELECTORS !== 'undefined',
       variables: {
         text: '#010304',
         background: '#eff6fb',
