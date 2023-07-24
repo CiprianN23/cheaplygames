@@ -1,0 +1,583 @@
+:root {
+	--text: #010304;
+	--background: #eff6fb;
+	--primary: #1e7b3a;
+	--secondary: #ffffff;
+	--accent: #84b9e1;
+	--background-lighten-10: #e5ecf1;
+	--fontSize100: clamp(0.78rem, calc(0.79rem + -0.02vw), 0.79rem);
+	--fontSize200: clamp(0.89rem, calc(0.87rem + 0.08vw), 0.94rem);
+	--fontSize300: clamp(1.00rem, calc(0.96rem + 0.22vw), 1.13rem);
+	--fontSize400: clamp(1.13rem, calc(1.05rem + 0.39vw), 1.35rem);
+	--fontSize500: clamp(1.27rem, calc(1.14rem + 0.62vw), 1.62rem);
+	--fontSize600: clamp(1.42rem, calc(1.24rem + 0.90vw), 1.94rem);
+	--fontSize700: clamp(1.60rem, calc(1.35rem + 1.27vw), 2.33rem);
+	--fontSize800: clamp(1.80rem, calc(1.45rem + 1.73vw), 2.80rem);
+}
+@media (prefers-color-scheme: dark) {
+:root {
+	--text: #fbfdfe;
+	--background: #040b10;
+	--background-lighten-10: #0e151a;
+	--primary: #1e7b3a;
+	--secondary: #000000;
+	--accent: #84b9e1;
+}
+}
+.align-content\:center{
+	align-content: center
+}
+.align-items\:center{
+	align-items: center
+}
+.background\:\$secondary{
+	background: var(--secondary)
+}
+.background\:\$background{
+	background: var(--background)
+}
+.background\:\$accent{
+	background: var(--accent)
+}
+body,
+.background-color\:\$background{
+	background-color: var(--background)
+}
+.\[tr\:nth-of-type\(2n\)\]\{background-color\:\$background-lighten-10\} tr:nth-of-type(2n),
+.\[th\]\{background-color\:\$background-lighten-10\;color\:\$text\;text-align\:left\;font-weight\:bold\} th,
+.background-color\:\$background-lighten-10{
+	background-color: var(--background-lighten-10)
+}
+.background-color\:transparent{
+	background-color: transparent
+}
+.background-color\:\$primary{
+	background-color: var(--primary)
+}
+.\[button\]\{color\:\$text\;background-color\:\$accent\;display\:block\;padding\:0\.5em_1em\;border\:1px_solid_\#999\;border-radius\:0\.2em\;text-decoration\:none\} button,
+.background-color\:\$accent{
+	background-color: var(--accent)
+}
+.background-color\:background-lighten-10{
+	background-color: background-lighten-10
+}
+.headerSortDown:after,
+.headerSortUp:after{
+	border: 7px solid transparent;
+}
+.border\:0{
+	border: 0
+}
+.sr-only{
+	border: 0 !important;
+}
+.border\:1px_solid_\#ccc{
+	border: 1px solid #ccc
+}
+.border\:1px_solid_\$text{
+	border: 1px solid var(--text)
+}
+.border\:none{
+	border: none
+}
+.\[button\]\{color\:\$text\;background-color\:\$accent\;display\:block\;padding\:0\.5em_1em\;border\:1px_solid_\#999\;border-radius\:0\.2em\;text-decoration\:none\} button{
+	border: 1px solid #999
+}
+.border-bottom\:1px_solid_\$text{
+	border-bottom: 1px solid var(--text)
+}
+.headerSortUp:after{
+	border-bottom-color: silver;
+}
+.border-collapse\:collapse{
+	border-collapse: collapse
+}
+.border-radius\:5px{
+	border-radius: 5px
+}
+.border-radius\:2em{
+	border-radius: 2em
+}
+.\[button\]\{color\:\$text\;background-color\:\$accent\;display\:block\;padding\:0\.5em_1em\;border\:1px_solid_\#999\;border-radius\:0\.2em\;text-decoration\:none\} button{
+	border-radius: 0.2em
+}
+.border-radius\:4px{
+	border-radius: 4px
+}
+.border-top\:1px_solid_\$background-lighten-10{
+	border-top: 1px solid var(--background-lighten-10)
+}
+.headerSortDown:after{
+	border-top-color: silver;
+}
+.headerSortUp:after{
+	bottom: 15px;
+}
+.sr-only{
+	clip: rect(1px,1px,1px,1px) !important;
+}
+.sr-only{
+	-webkit-clip-path: inset(50%) !important;
+}
+.sr-only{
+	-webkit-clip-path: inset(50%) !important;
+	        clip-path: inset(50%) !important;
+}
+body,
+.\[a\]\{padding\:0_1em_1em\;color\:\$text\} a,
+.\[a\]\{color\:\$text\;\} a,
+.\[th\]\{background-color\:\$background-lighten-10\;color\:\$text\;text-align\:left\;font-weight\:bold\} th,
+.\[a\]\{text-decoration\:underline\;color\:\$text\} a,
+.\[button\]\{color\:\$text\;background-color\:\$accent\;display\:block\;padding\:0\.5em_1em\;border\:1px_solid_\#999\;border-radius\:0\.2em\;text-decoration\:none\} button,
+.color\:\$text{
+	color: var(--text)
+}
+.hover\:color\:\$accent:hover{
+	color: var(--accent)
+}
+.color\:\$text_\!important{
+	color: var(--text) !important
+}
+.\[a\:hover\]\{color\:\$accent\} a:hover{
+	color: var(--accent)
+}
+.\[button\:hover\]\{color\:\$primary\} button:hover{
+	color: var(--primary)
+}
+.color\:\$secondary{
+	color: var(--secondary)
+}
+.headerSortDown:after,
+.headerSortUp:after{
+	content: '';
+}
+.cursor\:pointer{
+	cursor: pointer
+}
+.display\:grid{
+	display: grid
+}
+.\[button\]\{color\:\$text\;background-color\:\$accent\;display\:block\;padding\:0\.5em_1em\;border\:1px_solid_\#999\;border-radius\:0\.2em\;text-decoration\:none\} button,
+.display\:block{
+	display: block
+}
+.display\:flex{
+	display: flex
+}
+.display\:none{
+	display: none
+}
+.display\:inline{
+	display: inline
+}
+.display\:inline-block{
+	display: inline-block
+}
+.flex-direction\:column{
+	flex-direction: column
+}
+.flex-direction\:row{
+	flex-direction: row
+}
+.flex-wrap\:nowrap{
+	flex-wrap: nowrap
+}
+.\[\*\]\{margin\:revert\;padding\:revert\;font\:revert\} *{
+	font: revert
+}
+body{
+	font-size: var(--fontSize400)
+}
+.font-size\:\$fontSize300{
+	font-size: var(--fontSize300)
+}
+.font-size\:\$fontSize200{
+	font-size: var(--fontSize200)
+}
+.\[h2\]\{font-size\:\$fontSize500\} h2,
+.font-size\:\$fontSize500{
+	font-size: var(--fontSize500)
+}
+.\[h1\]\{font-size\:\$fontSize600\} h1{
+	font-size: var(--fontSize600)
+}
+.font-weight\:700{
+	font-weight: 700
+}
+.\[th\]\{background-color\:\$background-lighten-10\;color\:\$text\;text-align\:left\;font-weight\:bold\} th,
+.font-weight\:bold{
+	font-weight: bold
+}
+.font-weight\:600{
+	font-weight: 600
+}
+.gap\:1rem{
+	gap: 1rem
+}
+.grid-gap\:1rem{
+	grid-gap: 1rem
+}
+.grid-template-columns\:repeat\(auto-fit\,minmax\(361px\,1fr\)\){
+	grid-template-columns: repeat(auto-fit,minmax(361px,1fr))
+}
+.height\:1\.5em{
+	height: 1.5em
+}
+.sr-only{
+	height: 1px !important;
+}
+.height\:1\.5rem{
+	height: 1.5rem
+}
+.height\:44px{
+	height: 44px
+}
+.height\:200px{
+	height: 200px
+}
+.justify-content\:space-between{
+	justify-content: space-between
+}
+.justify-content\:center{
+	justify-content: center
+}
+.headerSortDown:after,
+.headerSortUp:after{
+	left: 10px;
+}
+.letter-spacing\:6px{
+	letter-spacing: 6px
+}
+.letter-spacing\:0\.2em{
+	letter-spacing: 0.2em
+}
+.letter-spacing\:0\.1em{
+	letter-spacing: 0.1em
+}
+body{
+	line-height: 1.6
+}
+.\[h1\,h2\]\{line-height\:1\.1\;text-align\:center\} h1,
+.\[h1\,h2\]\{line-height\:1\.1\;text-align\:center\} h2{
+	line-height: 1.1
+}
+.list-style\:none{
+	list-style: none
+}
+.list-style-type\:none{
+	list-style-type: none
+}
+.margin\:2rem_auto{
+	margin: 2rem auto
+}
+.margin\:2em_0_0_0{
+	margin: 2em 0 0 0
+}
+.sr-only{
+	margin: -1px !important;
+}
+.margin\:25px_0px{
+	margin: 25px 0px
+}
+.margin\:0_0\.3em_0\.3em_0{
+	margin: 0 0.3em 0.3em 0
+}
+.margin\:0_1px{
+	margin: 0 1px
+}
+.margin\:50px_auto{
+	margin: 50px auto
+}
+.\[\*\]\{margin\:revert\;padding\:revert\;font\:revert\} *{
+	margin: revert
+}
+.margin-bottom\:50px{
+	margin-bottom: 50px
+}
+.margin-bottom\:32px{
+	margin-bottom: 32px
+}
+.margin-bottom\:24px{
+	margin-bottom: 24px
+}
+.margin-bottom\:16px{
+	margin-bottom: 16px
+}
+.margin-inline\:auto{
+	margin-inline: auto
+}
+.margin-left\:1em{
+	margin-left: 1em
+}
+.margin-left\:5px{
+	margin-left: 5px
+}
+.margin-left\:0\.2rem{
+	margin-left: 0.2rem
+}
+.margin-right\:1\.2em{
+	margin-right: 1.2em
+}
+.margin-right\:10px{
+	margin-right: 10px
+}
+.margin-top\:30px{
+	margin-top: 30px
+}
+.margin-top\:1rem{
+	margin-top: 1rem
+}
+.margin-top\:1em{
+	margin-top: 1em
+}
+.max-height\:100\%{
+	max-height: 100%
+}
+.max-width\:1280px{
+	max-width: 1280px
+}
+.max-width\:100\%{
+	max-width: 100%
+}
+.max-width\:97\%{
+	max-width: 97%
+}
+.outline\:0{
+	outline: 0
+}
+.sr-only{
+	overflow: hidden !important;
+}
+.padding\:2em_0{
+	padding: 2em 0
+}
+.padding\:1em{
+	padding: 1em
+}
+.padding\:0\.5em_0{
+	padding: 0.5em 0
+}
+.\[a\]\{padding\:0_1em_1em\;color\:\$text\} a{
+	padding: 0 1em 1em
+}
+.sr-only{
+	padding: 0 !important;
+}
+.padding\:25px_10px{
+	padding: 25px 10px
+}
+.padding\:30px_10px{
+	padding: 30px 10px
+}
+.padding\:10px_5px{
+	padding: 10px 5px
+}
+.padding\:3px{
+	padding: 3px
+}
+.\[div\]\{text-align\:left\;padding\:0px_10px\} div{
+	padding: 0px 10px
+}
+.padding\:0\.1em_1em{
+	padding: 0.1em 1em
+}
+.\[th\,td\]\{padding\:1rem\;text-align\:left\} th,
+.\[th\,td\]\{padding\:1rem\;text-align\:left\} td{
+	padding: 1rem
+}
+.\[button\]\{color\:\$text\;background-color\:\$accent\;display\:block\;padding\:0\.5em_1em\;border\:1px_solid_\#999\;border-radius\:0\.2em\;text-decoration\:none\} button{
+	padding: 0.5em 1em
+}
+.padding\:55px_30px{
+	padding: 55px 30px
+}
+.padding\:16px{
+	padding: 16px
+}
+.padding\:12px_16px{
+	padding: 12px 16px
+}
+.padding\:0_20px_0_22px{
+	padding: 0 20px 0 22px
+}
+.\[\*\]\{margin\:revert\;padding\:revert\;font\:revert\} *{
+	padding: revert
+}
+.padding-bottom\:8px{
+	padding-bottom: 8px
+}
+.headerSortDown,
+.headerSortUp{
+	padding-left: 20px
+}
+.padding-left\:1rem{
+	padding-left: 1rem
+}
+.padding-top\:0\.5em{
+	padding-top: 0.5em
+}
+.headerSortDown:after,
+.headerSortUp:after{
+	position: relative;
+}
+.sr-only{
+	position: absolute !important;
+}
+.\[h1\,h2\]\{line-height\:1\.1\;text-align\:center\} h1,
+.\[h1\,h2\]\{line-height\:1\.1\;text-align\:center\} h2,
+.text-align\:center{
+	text-align: center
+}
+.\[div\]\{text-align\:left\;padding\:0px_10px\} div,
+.\[th\]\{background-color\:\$background-lighten-10\;color\:\$text\;text-align\:left\;font-weight\:bold\} th,
+.\[th\,td\]\{padding\:1rem\;text-align\:left\} th,
+.\[th\,td\]\{padding\:1rem\;text-align\:left\} td{
+	text-align: left
+}
+.\[th\:hover\]\{text-decoration\:underline\} th:hover,
+.\[a\]\{text-decoration\:underline\;color\:\$text\} a,
+.text-decoration\:underline{
+	text-decoration: underline
+}
+.\[button\]\{color\:\$text\;background-color\:\$accent\;display\:block\;padding\:0\.5em_1em\;border\:1px_solid_\#999\;border-radius\:0\.2em\;text-decoration\:none\} button,
+.text-decoration\:none{
+	text-decoration: none
+}
+.headerSortDown:after{
+	top: 10px;
+}
+.transition\:all_0\.3s_cubic-bezier\(0\,0\,0\.43\,1\.49\){
+	transition: all 0.3s cubic-bezier(0,0,0.43,1.49)
+}
+.transition-property\:width\,border-radius{
+	transition-property: width,border-radius
+}
+.sr-only{
+	white-space: nowrap !important;
+}
+.width\:1\.5em{
+	width: 1.5em
+}
+.sr-only{
+	width: 1px !important;
+}
+.width\:min\(900px\,100\%_-_3rem\){
+	width: min(900px,100% - 3rem)
+}
+.width\:100\%{
+	width: 100%
+}
+.width\:50rem{
+	width: 50rem
+}
+.width\:48\%{
+	width: 48%
+}
+.width\:min\(100\%_-_3rem\,_55ch\){
+	width: min(100% - 3rem, 55ch)
+}
+
+@media (min-width: 40rem) {
+.minw40rem\:display\:flex{
+	display: flex
+}
+.minw40rem\:justify-content\:space-evenly{
+	justify-content: space-evenly
+}
+}
+
+@media (max-width: 40em) {
+.maxw40em\:aspect-ratio\:1{
+	aspect-ratio: 1
+}
+.maxw40em\:background-color\:\$background-lighten-10{
+	background-color: var(--background-lighten-10)
+}
+.\[td\:before\]\{maxw40em\:content\:attr\(data-cell\)\;maxw40em\:font-size\:\$fontSize300\;maxw40em\:font-weight\:700\;maxw40em\:text-transform\:capitalize\} td:before{
+	content: attr(data-cell)
+}
+.maxw40em\:display\:block{
+	display: block
+}
+.\[th\]\{maxw40em\:display\:none\} th{
+	display: none
+}
+.\[td\]\{maxw40em\:display\:grid\;maxw40em\:gap\:0\.5rem\;maxw40em\:grid-template-columns\:15ch_auto\;maxw40em\:padding\:0\.5rem_1rem\} td{
+	display: grid
+}
+.maxw40em\:display\:flex{
+	display: flex
+}
+.maxw40em\:flex-direction\:column{
+	flex-direction: column
+}
+.\[td\:before\]\{maxw40em\:content\:attr\(data-cell\)\;maxw40em\:font-size\:\$fontSize300\;maxw40em\:font-weight\:700\;maxw40em\:text-transform\:capitalize\} td:before{
+	font-size: var(--fontSize300)
+}
+.\[td\:before\]\{maxw40em\:content\:attr\(data-cell\)\;maxw40em\:font-size\:\$fontSize300\;maxw40em\:font-weight\:700\;maxw40em\:text-transform\:capitalize\} td:before{
+	font-weight: 700
+}
+.maxw40em\:gap\:3em{
+	gap: 3em
+}
+.\[td\]\{maxw40em\:display\:grid\;maxw40em\:gap\:0\.5rem\;maxw40em\:grid-template-columns\:15ch_auto\;maxw40em\:padding\:0\.5rem_1rem\} td{
+	gap: 0.5rem
+}
+.\[td\]\{maxw40em\:display\:grid\;maxw40em\:gap\:0\.5rem\;maxw40em\:grid-template-columns\:15ch_auto\;maxw40em\:padding\:0\.5rem_1rem\} td{
+	grid-template-columns: 15ch auto
+}
+.maxw40em\:inset\:0_0_0_0{
+	inset: 0 0 0 0
+}
+.maxw40em\:margin-bottom\:10px{
+	margin-bottom: 10px
+}
+.maxw40em\:margin-left\:0\.5rem{
+	margin-left: 0.5rem
+}
+.maxw40em\:padding\:min\(30vh\,10rem\)_2em{
+	padding: min(30vh,10rem) 2em
+}
+.\[td\]\{maxw40em\:display\:grid\;maxw40em\:gap\:0\.5rem\;maxw40em\:grid-template-columns\:15ch_auto\;maxw40em\:padding\:0\.5rem_1rem\} td{
+	padding: 0.5rem 1rem
+}
+.\[td\:last-child\]\{maxw40em\:padding-bottom\:2rem\} td:last-child{
+	padding-bottom: 2rem
+}
+.\[td\:first-child\]\{maxw40em\:padding-top\:2rem\} td:first-child{
+	padding-top: 2rem
+}
+.maxw40em\:position\:absolute{
+	position: absolute
+}
+.maxw40em\:position\:fixed{
+	position: fixed
+}
+.maxw40em\:right\:2rem{
+	right: 2rem
+}
+.\[td\:before\]\{maxw40em\:content\:attr\(data-cell\)\;maxw40em\:font-size\:\$fontSize300\;maxw40em\:font-weight\:700\;maxw40em\:text-transform\:capitalize\} td:before{
+	text-transform: capitalize
+}
+.maxw40em\:top\:2rem{
+	top: 2rem
+}
+.\[\&\[data-visible\=false\]\]\{maxw40em\:transform\:translateX\(100\%\)\}[data-visible=false]{
+	transform: translateX(100%)
+}
+.\[\&\[data-visible\=true\]\]\{maxw40em\:transform\:translateX\(0\%\)\}[data-visible=true]{
+	transform: translateX(0%)
+}
+.maxw40em\:width\:2rem{
+	width: 2rem
+}
+.maxw40em\:width\:100\%{
+	width: 100%
+}
+.maxw40em\:z-index\:9999{
+	z-index: 9999
+}
+.maxw40em\:z-index\:1000{
+	z-index: 1000
+}
+}

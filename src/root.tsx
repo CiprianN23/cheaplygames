@@ -1,18 +1,15 @@
-import { component$ } from '@builder.io/qwik';
+import { component$, useStyles$ } from '@builder.io/qwik';
 import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from '@builder.io/qwik-city';
 import { RouterHead } from './components/router-head/router-head';
 
-import './fonts.css';
-import './reset.css';
-import './global.css';
+import fontStyles from './styles/fonts.css?inline';
+import resetStyles from './styles/reset.css?inline';
+import globalStyles from './styles/global.css?inline';
 
 export default component$(() => {
-    /**
-     * The root of a QwikCity site always start with the <QwikCityProvider> component,
-     * immediately followed by the document's <head> and <body>.
-     *
-     * Dont remove the `<head>` and `<body>` elements.
-     */
+    useStyles$(fontStyles);
+    useStyles$(resetStyles);
+    useStyles$(globalStyles);
 
     return (
         <QwikCityProvider>
@@ -21,7 +18,7 @@ export default component$(() => {
                 <link rel="manifest" href="/manifest.json" />
                 <RouterHead />
             </head>
-            <body lang="en">
+            <body lang="en" id="mainBody">
                 <RouterOutlet />
                 <ServiceWorkerRegister />
             </body>

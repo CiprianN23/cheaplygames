@@ -1,5 +1,4 @@
-import { component$, useStylesScoped$ } from '@builder.io/qwik';
-import styles from './storedeal.css?inline'
+import { component$ } from '@builder.io/qwik';
 
 interface ItemProps {
     dealID: string;
@@ -10,10 +9,8 @@ interface ItemProps {
 }
 
 export const StoreDeal = component$<ItemProps>((props) => {
-    useStylesScoped$(styles);
-
     const cheapSharkRedirectLink = 'https://www.cheapshark.com/redirect?dealID=';
-    const MAX_GAME_TITLE_LENGTH = 22;
+    const MAX_GAME_TITLE_LENGTH = 18;
 
     function truncateString(str: string, num: number) {
         if (str.length > num) {
@@ -25,9 +22,10 @@ export const StoreDeal = component$<ItemProps>((props) => {
 
     return (
         <>
-            <div class="deal-container">
+            <div class="display:flex flex-direction:row flex-wrap:nowrap justify-content:space-between margin:25px_0px [div]{text-align:left;padding:0px_10px}">
                 <div class="game-title">
                     <a
+                        class="text-decoration:none color:$text hover:color:$accent font-size:$fontSize300"
                         href={cheapSharkRedirectLink + props.dealID}
                         target="_blank"
                         rel="noreferrer"
@@ -35,10 +33,10 @@ export const StoreDeal = component$<ItemProps>((props) => {
                         {truncateString(props.title, MAX_GAME_TITLE_LENGTH)}
                     </a>
                 </div>
-                <div class="prices">
+                <div>
                     {props.isOnSale === '1' && <s>${props.normalPrice}</s>}
 
-                    <span class="price-highlight">${props.salePrice}</span>
+                    <span class="color:$text_!important background-color:$primary padding:3px border:1px_solid_$text border-radius:5px margin-left:5px font-weight:700">${props.salePrice}</span>
                 </div>
             </div>
         </>

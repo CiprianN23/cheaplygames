@@ -1,5 +1,4 @@
-import { component$, useStylesScoped$ } from '@builder.io/qwik';
-import styles from './feedbaackmessage.css?inline';
+import { component$ } from '@builder.io/qwik';
 import type { ResponseStatus } from '@modular-forms/qwik';
 import { BiExclamationCircle } from '../icons/BiExclamationCircle';
 import { BiCheckCircle } from '../icons/BiCheckCircle';
@@ -12,8 +11,6 @@ interface ItemProps {
 }
 
 export const FeedbackMessage = component$<ItemProps>(({ status, messasge }) => {
-    useStylesScoped$(styles);
-
     return (
         <>
             <div class={status}>
