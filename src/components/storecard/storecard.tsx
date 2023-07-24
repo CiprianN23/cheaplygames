@@ -1,6 +1,7 @@
 import { component$, useResource$, Resource } from '@builder.io/qwik';
 import { StoreDeal } from '../storedeal/storedeal';
 import type GameDeal from '~/interfaces/GameDeal';
+import { Image } from '@unpic/qwik';
 
 interface ItemProps {
     storeId: string;
@@ -33,16 +34,18 @@ export const StoreCard = component$<ItemProps>((props) => {
 
     return (
         <>
-            <div class="card">
-                <div class="card-header">
-                    <img
-                        src={`/stores/logos/${Number(props.storeId) - 1}.webp`}
+            <div class="border:1px_solid_#ccc margin-bottom:50px">
+                <div class="text-align:center padding:25px_10px background-color:$background-lighten-10 color:$text">
+                    <Image
+                        class="display:inline max-width:100% max-height:100%"
+                        layout="constrained"
+                        src={`https://www.cheapshark.com/img/stores/logos/${Number(props.storeId) - 1}.png`}
                         alt={props.storeName}
                         width={64}
                         height={64}
                     />
                 </div>
-                <div class="card-body">
+                <div class="padding:30px_10px text-align:center font-size:$fontSize300 background-color:$background">
                     <Resource
                         value={gameDeals}
                         onPending={() => <p>Loading....</p>}
@@ -61,7 +64,7 @@ export const StoreCard = component$<ItemProps>((props) => {
                             </>
                         )}
                     />
-                    <a href={`/browse?storeID=${props.storeId}`} class="btn">
+                    <a href={`/browse?storeID=${props.storeId}`} class="display:block color:$text text-align:center background-color:$background text-decoration:none margin-top:30px padding:10px_5px hover:color:$accent">
                         View all deals
                     </a>
                 </div>

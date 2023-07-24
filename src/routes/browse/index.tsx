@@ -9,6 +9,7 @@ import { type DocumentHead, useLocation, useNavigate } from '@builder.io/qwik-ci
 import { DealLastChange } from '~/components/deallastchange/deallastchange';
 import type GameDeal from '~/interfaces/GameDeal';
 import { useGameStores } from '../layout';
+import {Image } from '@unpic/qwik';
 
 export default component$(() => {
     const loc = useLocation();
@@ -27,7 +28,7 @@ export default component$(() => {
     const maxPage = useSignal<string | null>('200');
     const isDisabled = useSignal(false);
 
-    const iconsLink = '/stores/icons/';
+    const iconsLink = 'https://cheapshark.com/img/stores/icons/';
     const cheapSharkDealLink = 'https://www.cheapshark.com/redirect?dealID=';
 
     const refreshDeals = $(async () => {
@@ -113,15 +114,16 @@ export default component$(() => {
 
     return (
         <>
-            <div class="container">
-                <div class="filtering">
+            <div class="width:min(900px,100%_-_3rem) margin-inline:auto">
+                <div class="display:flex color:$text maxw40em:margin-left:0.5rem">
                     <div>
-                        <input placeholder="Search" type="search" name="title" bind:value={title} />
-                        <button>Show</button>
+                        <input class="outline:0 border:0 height:1.5rem padding-left:1rem border-radius:2em transition:all_0.3s_cubic-bezier(0,0,0.43,1.49) transition-property:width,border-radius color:$text" placeholder="Search" type="search" name="title" bind:value={title} />
+                        <button class="display:inline-block font-weight:bold padding:0.1em_1em margin:0_0.3em_0.3em_0 border:none border-radius:2em text-decoration:none color:$text background-color:$accent text-align:center">Show</button>
 
-                        <div class="hidden">
+                        <div class="display:none maxw40em:display:block">
                             <label for="orderBy">Sort: </label>
                             <select
+                                class="margin-left:0.2rem border:1px_solid_$text"
                                 name="orderBy"
                                 id="orderBy"
                                 bind:value={selectedValue}
@@ -136,7 +138,18 @@ export default component$(() => {
                     </div>
                 </div>
 
-                <table class="deals-table">
+                <table class="width:100% border-collapse:collapse background-color:background-lighten-10 margin-top:1rem
+                [tr:nth-of-type(2n)]{background-color:$background-lighten-10}
+                [th]{background-color:$background-lighten-10;color:$text;text-align:left;font-weight:bold}
+                [th:hover]{text-decoration:underline}
+                [th,td]{padding:1rem;text-align:left}
+                [a]{text-decoration:underline;color:$text}
+                [a:hover]{color:$accent}
+                [th]{maxw40em:display:none}
+                [td]{maxw40em:display:grid;maxw40em:gap:0.5rem;maxw40em:grid-template-columns:15ch_auto;maxw40em:padding:0.5rem_1rem}
+                [td:first-child]{maxw40em:padding-top:2rem}
+                [td:last-child]{maxw40em:padding-bottom:2rem}
+                [td:before]{maxw40em:content:attr(data-cell);maxw40em:font-size:$fontSize300;maxw40em:font-weight:700;maxw40em:text-transform:capitalize}">
                     <thead>
                         <tr>
                             <th
@@ -207,11 +220,12 @@ export default component$(() => {
                                     {deals.map((deal) => (
                                         <tr key={deal.dealID}>
                                             <td data-cell="store">
-                                                <img
+                                                <Image
+                                                    layout="constrained"
                                                     src={
                                                         iconsLink +
                                                         (Number(deal.storeID) - 1) +
-                                                        '.webp'
+                                                        '.png'
                                                     }
                                                     alt={
                                                         gameStores.value[Number(deal.storeID) - 1]
@@ -256,13 +270,15 @@ export default component$(() => {
                 </table>
 
                 <nav>
-                    <p class="page">
+                    <p class="text-align:center color:$text">
                         Page {currentPage.value + 1} of {Number(maxPage.value) + 1}
                     </p>
-                    <ul class="pagination" id="pagination">
+                    <ul class="display:flex justify-content:center border-top:1px_solid_$background-lighten-10 margin-top:1em padding-top:0.5em list-style:none
+                    [button]{color:$text;background-color:$accent;display:block;padding:0.5em_1em;border:1px_solid_#999;border-radius:0.2em;text-decoration:none}
+                    [button:hover]{color:$primary}" id="pagination">
                         {currentPage.value > 0 && (
                             <>
-                                <li>
+                                <li class="margin:0_1px">
                                     <button
                                         disabled={isDisabled.value}
                                         class={{ disabled: isDisabled.value }}

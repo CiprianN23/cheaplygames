@@ -7,7 +7,7 @@ export default component$(() => {
             <div
                 class="margin-inline:auto width:min(100%_-_3rem,_55ch) display:flex align-items:center align-content:center justify-content:center flex-direction:column
                         [*]{margin:revert;padding:revert;font:revert}
-                        [h1,h2]{line-height:1.1}
+                        [h1,h2]{line-height:1.1;text-align:center}
                         [h1]{font-size:$fontSize600}
                         [h2]{font-size:$fontSize500}"
             >
