@@ -1,8 +1,12 @@
 <script lang="ts">
-	export let dealData: any;
+	import type { GameDeal } from '$lib/types';
 
-	let cheapSharkRedirectLink = 'https://www.cheapshark.com/redirect?dealID=';
-	const MAX_GAME_TITLE_LENGTH = 22;
+	let { dealData } = $props<{
+		dealData: GameDeal;
+	}>();
+
+	const cheapSharkRedirectLink = 'https://www.cheapshark.com/redirect?dealID=';
+	const MAX_GAME_TITLE_LENGTH = 18;
 
 	function truncateString(str: string, num: number) {
 		if (str.length > num) {
@@ -13,23 +17,43 @@
 	}
 </script>
 
-<div class="deal-container">
+<div class="wrapper">
 	<div class="game-title">
-		<a href={cheapSharkRedirectLink + dealData.dealID} target="_blank" rel="noreferrer"
-			>{truncateString(dealData.title, MAX_GAME_TITLE_LENGTH)}</a
-		>
+		<a href={cheapSharkRedirectLink + dealData.dealID} target="_blank" rel="noreferrer">
+			{truncateString(dealData.title, MAX_GAME_TITLE_LENGTH)}
+		</a>
 	</div>
-	<div class="prices">
+	<div>
 		{#if dealData.isOnSale === '1'}
 			<s>${dealData.normalPrice}</s>
 		{/if}
 
-		<span class="price-highlight">${dealData.salePrice}</span>
+		<span>${dealData.salePrice}</span>
 	</div>
 </div>
 
 <style>
-	.deal-container {
+	a {
+		text-decoration: none;
+		color: var(--text);
+		font-size: var(--fontSize300);
+	}
+
+	a:hover {
+		color: var(--accent);
+	}
+
+	span {
+		color: var(--text) !important;
+		background-color: var(--primary);
+		padding: 3px;
+		border: 1px solid var(--text);
+		border-radius: 5px;
+		margin-left: 5px;
+		font-weight: 700;
+	}
+
+	.wrapper {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: nowrap;
@@ -37,27 +61,8 @@
 		margin: 25px 0px;
 	}
 
-	.game-title a {
-		text-decoration: none;
-		color: #000;
-	}
-
-	.game-title a:hover {
-		color: var(--accent-color);
-	}
-
-	.deal-container > div {
+	.wrapper > div {
 		text-align: left;
 		padding: 0px 10px;
-	}
-
-	.price-highlight {
-		color: var(--secondary-text-color) !important;
-		background-color: var(--accent-color);
-		padding: 3px;
-		border: 1px solid #909090;
-		border-radius: 5px;
-		margin-left: 5px;
-		font-weight: 600;
 	}
 </style>

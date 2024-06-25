@@ -1,8 +1,8 @@
 import type { PageLoad } from './$types';
+import stores from '$lib/data/gamestores.json';
 
-export const load: PageLoad = async ({ fetch }) => {
-	const res = await fetch('https://www.cheapshark.com/api/1.0/stores');
+export const load: PageLoad = () => {
 	return {
-		stores: res.ok && (await res.json())
+		storeData: stores
 	};
 };

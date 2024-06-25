@@ -1,0 +1,26 @@
+:root {
+	--text: #010304;
+	--background: #eff6fb;
+	--primary: #1e7b3a;
+	--secondary: #ffffff;
+	--accent: #84b9e1;
+	--background-lighten-10: #e5ecf1;
+	--fontSize100: clamp(0.78rem, calc(0.79rem + -0.02vw), 0.79rem);
+	--fontSize200: clamp(0.89rem, calc(0.87rem + 0.08vw), 0.94rem);
+	--fontSize300: clamp(1rem, calc(0.96rem + 0.22vw), 1.13rem);
+	--fontSize400: clamp(1.13rem, calc(1.05rem + 0.39vw), 1.35rem);
+	--fontSize500: clamp(1.27rem, calc(1.14rem + 0.62vw), 1.62rem);
+	--fontSize600: clamp(1.42rem, calc(1.24rem + 0.9vw), 1.94rem);
+	--fontSize700: clamp(1.6rem, calc(1.35rem + 1.27vw), 2.33rem);
+	--fontSize800: clamp(1.8rem, calc(1.45rem + 1.73vw), 2.8rem);
+}
+@media (prefers-color-scheme: dark) {
+	:root {
+		--text: #fbfdfe;
+		--background: #040b10;
+		--background-lighten-10: #0e151a;
+		--primary: #1e7b3a;
+		--secondary: #000000;
+		--accent: #84b9e1;
+	}
+}

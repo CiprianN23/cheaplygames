@@ -1,34 +1,46 @@
 import type { PageLoad } from './$types';
+import stores from '$lib/data/gamestores.json';
 
 export const load: PageLoad = async ({ fetch, url }) => {
-	let storeID = url.searchParams.get('storeID');
-	let pageNumber = url.searchParams.get('pageNumber');
-	let sortBy = url.searchParams.get('sortBy');
-	let title = url.searchParams.get('title');
-	let res;
+	const paramStoreID = url.searchParams.get('storeID');
+	const paramPageNumber = url.searchParams.get('pageNumber');
+	const paramSortBy = url.searchParams.get('sortBy');
+	const paramTitle = url.searchParams.get('title');
+	const paramDesc = url.searchParams.get('desc');
 
-	let apiLink: string = 'https://www.cheapshark.com/api/1.0/deals?pageSize=15';
+	const apiLink = new URL('https://www.cheapshark.com/api/1.0/deals?pageSize=15&onSale=1');
 
-	if (storeID) {
-		apiLink = apiLink.concat(`&storeID=${storeID}`);
+	if (paramStoreID) {
+		apiLink.searchParams.set('storeID', paramStoreID);
 	}
 
-	if (pageNumber) {
-		apiLink = apiLink.concat(`&pageNumber=${pageNumber}`);
+	if (paramPageNumber) {
+		apiLink.searchParams.set('pageNumber', paramPageNumber.toString());
 	}
 
-	if (sortBy) {
-		apiLink = apiLink.concat(`&sortBy=${sortBy}`);
+	if (paramSortBy) {
+		apiLink.searchParams.set('sortBy', paramSortBy);
 	}
 
-	if (title) {
-		apiLink = apiLink.concat(`&title=${title}`);
+	if (paramTitle) {
+		apiLink.searchParams.set('title', paramTitle);
 	}
 
-	res = await fetch(apiLink);
+	if (paramDesc) {
+		apiLink.searchParams.set('desc', paramDesc);
+	}
+
+	const response = await fetch(apiLink, {
+		headers: {
+			'Cache-Control': 'max-age=1200'
+		}
+	});
+
+	const newDeals = await response.json();
 
 	return {
-		deals: res.ok && (await res.json()),
-		maxPages: res.headers.get('x-total-page-count')
+		storeData: stores,
+		deals: newDeals,
+		maxPage: response.headers.get('x-total-page-count')
 	};
 };

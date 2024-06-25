@@ -1,59 +1,68 @@
 <script lang="ts">
-	import Message from '$lib/components/Message.svelte';
-	import type { ActionData } from './$types';
+	import { superForm } from 'sveltekit-superforms';
 
-	export let form: ActionData;
+	let { data } = $props();
+
+	const { form, errors, constraints, message } = superForm(data.form);
 </script>
 
 <svelte:head>
 	<title>CheaplyGames - Contact</title>
-	<meta name="description" content="Contact us page for CheaplyGames">
+	<meta name="description" content="Contact us page for CheaplyGames" />
 </svelte:head>
 
-<div class="message-container">
-	{#if form?.success}
-		<Message message="Contact form submitted successfully!" messageType="success-msg" />
-	{/if}
-	{#if form?.invalidEmail}
-		<Message message="Email address is not valid!" messageType="error-msg" />
-	{/if}
-	{#if form?.badResponse}
-		<Message message="There has been an error. Submiting failed!" messageType="error-msg" />
-	{/if}
-</div>
+<form method="POST">
+	{#if $message}<h3>{$message}</h3>{/if}
 
-<form method="POST" class="contact-form" id="contact-form">
-	<div class="title">
-		<h2>CONTACT US</h2>
+	<div>
+		<h1>CONTACT US</h1>
 	</div>
-	<div class="half">
-		<div class="item">
-			<label for="name">NAME</label>
-			<input type="text" id="name" name="name" required />
+
+	<div class="form-wrapper">
+		<div class="wrapper">
+			<label for="name">Name</label>
+			<input
+				type="text"
+				name="name"
+				aria-invalid={$errors.name ? 'true' : undefined}
+				bind:value={$form.name}
+				{...$constraints.name}
+			/>
+			{#if $errors.name}<span class="invalid">{$errors.name}</span>{/if}
 		</div>
-		<div class="item">
-			<label for="email ">EMAIL</label>
-			<input type="text" id="email" name="email" required />
+
+		<div class="wrapper">
+			<label for="email">E-mail</label>
+			<input
+				type="email"
+				name="email"
+				aria-invalid={$errors.email ? 'true' : undefined}
+				bind:value={$form.email}
+				{...$constraints.email}
+			/>
+			{#if $errors.email}<span class="invalid">{$errors.email}</span>{/if}
 		</div>
 	</div>
-	<div class="full">
-		<label for="message">MESSAGE</label>
-		<textarea name="message" id="message" required />
+
+	<div class="wrapper-textarea">
+		<label for="message">Message</label>
+		<textarea
+			name="message"
+			aria-invalid={$errors.message ? 'true' : undefined}
+			bind:value={$form.message}
+			{...$constraints.message}
+		></textarea>
+		{#if $errors.message}<span class="invalid">{$errors.message}</span>{/if}
 	</div>
-	<div class="action">
-		<input type="submit" value="SEND MESSAGE" />
+
+	<div class="button">
+		<button>SEND MESSAGE</button>
 	</div>
 </form>
 
 <style>
-	.message-container {
-		width: 50rem;
-		max-width: 97%;
-		margin: 50px auto;
-	}
-
-	.contact-form {
-		background: var(--secondary-color);
+	form {
+		background: var(--secondary);
 		width: 50rem;
 		margin: 50px auto;
 		max-width: 97%;
@@ -61,96 +70,96 @@
 		padding: 55px 30px;
 	}
 
-	.contact-form .title h2 {
+	h1 {
+		font-size: var(--fontSize500);
 		letter-spacing: 6px;
-		border-bottom: 1px solid var(--primary-text-color);
+		border-bottom: 1px solid var(--text);
 		display: inline-block;
 		padding-bottom: 8px;
 		margin-bottom: 32px;
-		color: var(--primary-text-color);
+		color: var(--text);
 	}
 
-	.contact-form .half {
-		display: flex;
-		justify-content: space-between;
+	h3 {
+		margin-bottom: 2rem;
+		background: var(--background-lighten-10);
+		color: var(--text);
 	}
 
-	.contact-form .half .item {
+	label {
+		display: block;
+		font-size: var(--fontSize300);
+		letter-spacing: 0.2em;
+		margin-bottom: 16px;
+		color: var(--text);
+	}
+
+	input,
+	textarea {
+		border-radius: 4px;
+		border: 1px solid var(--text);
+		outline: 0;
+		padding: 16px;
+		width: 100%;
+		height: 44px;
+		background: var(--background);
+	}
+
+	textarea {
+		padding: 12px 16px;
+		height: 200px;
+		background: var(--background);
+	}
+
+	button {
+		border-radius: 4px;
+		border: 1px solid var(--text);
+		cursor: pointer;
+		font-weight: 600;
+		height: 44px;
+		letter-spacing: 0.1em;
+		outline: 0;
+		padding: 0 20px 0 22px;
+		margin-right: 10px;
+		background: var(--accent);
+		color: var(--secondary);
+	}
+
+	.wrapper {
 		display: flex;
 		flex-direction: column;
 		margin-bottom: 24px;
 		width: 48%;
 	}
 
-	.contact-form label {
-		display: block;
-		font-size: 13px;
-		letter-spacing: 3.5px;
-		margin-bottom: 16px;
-		color: var(--primary-text-color);
+	.form-wrapper {
+		display: flex;
+		justify-content: space-between;
 	}
 
-	.contact-form .half .item input {
-		border-radius: 4px;
-		border: 1px solid white;
-		outline: 0;
-		padding: 16px;
-		width: 100%;
-		height: 44px;
-		background: var(--tertiary-color);
-		font-size: 17px;
-	}
-
-	.contact-form .full {
+	.wrapper-textarea {
 		margin-bottom: 24px;
 	}
 
-	.contact-form .full textarea {
-		background: var(--tertiary-color);
-		border-radius: 4px;
-		border: 1px solid white;
-		outline: 0;
-		padding: 12px 16px;
-		width: 100%;
-		height: 200px;
-		font-size: 17px;
-	}
-
-	.contact-form .action {
+	.button {
 		margin-bottom: 32px;
 	}
 
-	.contact-form .action input {
-		border-radius: 4px;
-		border: 1px solid white;
-		cursor: pointer;
-		font-size: 13px;
-		font-weight: 600;
-		height: 44px;
-		letter-spacing: 3px;
-		outline: 0;
-		padding: 0 20px 0 22px;
-		margin-right: 10px;
+	.invalid {
+		color: red;
 	}
 
-	.contact-form .action input[type='submit'] {
-		background: var(--accent-color);
-		color: var(--secondary-text-color);
-	}
-
-	@media screen and (max-width: 620px) {
-		.contact-form .half {
-			flex-direction: column;
-		}
-		.contact-form .half .item {
+	@media screen and (max-width: 40em) {
+		button {
+			margin-bottom: 10px;
 			width: 100%;
 		}
-		.contact-form .action {
-			display: flex;
+
+		.form-wrapper {
 			flex-direction: column;
 		}
-		.contact-form .action input {
-			margin-bottom: 10px;
+
+		.wrapper {
 			width: 100%;
 		}
 	}

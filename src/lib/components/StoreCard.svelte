@@ -1,29 +1,31 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import StoreDeal from '$lib/components/StoreDeal.svelte';
+	import StoreDeal from './StoreDeal.svelte';
+	import type { GameStore, GameDeal } from '$lib/types';
 
-	export let storeData: any;
-
-	$: storeDeals = [];
+	const { storeData } = $props<{
+		storeData: GameStore;
+	}>();
+	let storeDeals = $state<GameDeal[]>([]);
 
 	onMount(async () => {
 		const url = `https://www.cheapshark.com/api/1.0/deals?storeID=${storeData.storeID}&pageSize=7`;
 		const res = await fetch(url);
-		storeDeals = res.ok && (await res.json());
+		storeDeals = await res.json();
 	});
 </script>
 
-<div class="card">
-	<div class="card-header">
-		<img
-			src="https://www.cheapshark.com/img/stores/banners/{storeData.storeID - 1}.png"
-			alt={storeData.storeName}
-			height="50"
-		/>
+<div class="wrapper">
+	<div class="banner">
+		<picture>
+			<source srcset={`./storelogos/${Number(storeData.storeID) - 1}.avif`} type="image/avif" />
+			<source srcset={`./storelogos/${Number(storeData.storeID) - 1}.webp`} type="image/webp" />
+			<img src={`./storelogos/${Number(storeData.storeID) - 1}.png`} alt={storeData.storeName} />
+		</picture>
 	</div>
-	<div class="card-body">
-		{#each storeDeals as deal}
-			<StoreDeal dealData={deal} />
+	<div class="deals-wrapper">
+		{#each storeDeals as storeDeal (storeDeal.dealID)}
+			<StoreDeal dealData={storeDeal} />
 		{:else}
 			Loading....
 		{/each}
@@ -32,48 +34,44 @@
 </div>
 
 <style>
-	.card {
-		background-color: #fff;
-		border: 1px solid #ccc;
-		margin-bottom: 50px;
-		transition: 0.3s;
-		-webkit-box-shadow: 0px 0px 10px 0px #94dfff;
-		box-shadow: 0px 0px 10px 0px #94dfff;
-	}
-
-	.card-header {
-		text-align: center;
-		padding: 25px 10px;
-		background-color: var(--secondary-color);
-		color: #fff;
-	}
-
-	.card-header > img {
+	img,
+	picture {
 		display: inline;
 		max-width: 100%;
 		max-height: 100%;
+		height: 64px;
 	}
 
-	.card-body {
+	.wrapper {
+		border: 1px solid #ccc;
+		margin-bottom: 50px;
+	}
+
+	.deals-wrapper {
 		padding: 30px 10px;
 		text-align: center;
-		font-size: 14px;
-		background-color: var(--tertiary-color);
+		font-size: var(--fontSize300);
+		background-color: var(--background);
 	}
 
-	.card-body .btn {
-		display: block;
-		color: #fff;
+	.banner {
 		text-align: center;
-		background: var(--secondary-color);
+		padding: 25px 10px;
+		background-color: var(--background-lighten-10);
+		color: var(--text);
+	}
+
+	.btn {
+		display: block;
+		color: var(--text);
+		text-align: center;
+		background-color: var(--background);
 		text-decoration: none;
 		margin-top: 30px;
 		padding: 10px 5px;
-		transition: 0.3s;
 	}
 
-	.card-body .btn:hover {
-		transform: scale(1.04);
-		color: var(--accent-color);
+	.btn:hover {
+		color: var(--accent);
 	}
 </style>
