@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
-	import AddTableARIA from '$lib/addTableAria';
+	import AddTableARIA from '$lib/addtablearia.js';
 	import DealLastChange from '$lib/components/DealLastChange.svelte';
 
 	const { data } = $props();
