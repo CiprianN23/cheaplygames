@@ -24,6 +24,7 @@
 			<input
 				type="text"
 				name="name"
+				id="name"
 				aria-invalid={$errors.name ? 'true' : undefined}
 				bind:value={$form.name}
 				{...$constraints.name}
@@ -36,6 +37,7 @@
 			<input
 				type="email"
 				name="email"
+				id="email"
 				aria-invalid={$errors.email ? 'true' : undefined}
 				bind:value={$form.email}
 				{...$constraints.email}
@@ -48,6 +50,7 @@
 		<label for="message">Message</label>
 		<textarea
 			name="message"
+			id="message"
 			aria-invalid={$errors.message ? 'true' : undefined}
 			bind:value={$form.message}
 			{...$constraints.message}
