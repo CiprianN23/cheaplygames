@@ -249,7 +249,7 @@
 
 	nav button {
 		color: var(--text);
-		background-color: var(--accent);
+		background-color: var(--accent-darken-30);
 		display: block;
 		padding: 0.5em 1em;
 		border: 1px solid #999;
@@ -337,7 +337,7 @@
 		border-radius: 2em;
 		text-decoration: none;
 		color: var(--text);
-		background-color: var(--accent);
+		background-color: var(--accent-darken-30);
 		text-align: center;
 	}
 
