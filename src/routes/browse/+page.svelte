@@ -258,7 +258,7 @@
 	}
 
 	nav button:hover {
-		color: var(--primary);
+		color: var(--secondary);
 	}
 
 	select {
