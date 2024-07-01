@@ -4,7 +4,7 @@
 	--primary: #1e7b3a;
 	--secondary: #ffffff;
 	--accent: #84b9e1;
-	--accent-darken-30: #66A8DB;
+	--accent-darken-30: #66a8db;
 	--background-lighten-10: #e5ecf1;
 	--fontSize100: clamp(0.78rem, calc(0.79rem + -0.02vw), 0.79rem);
 	--fontSize200: clamp(0.89rem, calc(0.87rem + 0.08vw), 0.94rem);
@@ -23,6 +23,6 @@
 		--primary: #1e7b3a;
 		--secondary: #000000;
 		--accent: #84b9e1;
-		--accent-darken-30: #1C5078;
+		--accent-darken-30: #1c5078;
 	}
 }

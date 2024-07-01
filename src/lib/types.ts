@@ -1,5 +1,5 @@
 export type GameDeal = {
-    internalName: string;
+	internalName: string;
 	title: string;
 	metacriticLink: string;
 	dealID: string;
@@ -18,17 +18,17 @@ export type GameDeal = {
 	lastChange: number;
 	dealRating: string;
 	thumb: string;
-}
+};
 
 type Image = {
-    banner: string;
-    logo: string;
-    icon: string;
-}
+	banner: string;
+	logo: string;
+	icon: string;
+};
 
 export type GameStore = {
-    storeID: string;
+	storeID: string;
 	storeName: string;
 	isActive: number;
 	images: Image;
-}
+};

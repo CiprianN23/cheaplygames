@@ -1,6 +1,6 @@
 <svelte:head>
 	<title>CheaplyGames - Privacy Policy</title>
-	<meta name="description" content="CheaplyGames's privacy policy">
+	<meta name="description" content="CheaplyGames's privacy policy" />
 </svelte:head>
 
 <div>

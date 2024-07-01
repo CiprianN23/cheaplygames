@@ -1,73 +1,33 @@
-import typescriptEslint from '@typescript-eslint/eslint-plugin';
-import globals from 'globals';
-import tsParser from '@typescript-eslint/parser';
-import parser from 'svelte-eslint-parser';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import js from '@eslint/js';
-import { FlatCompat } from '@eslint/eslintrc';
+import ts from 'typescript-eslint';
+import svelte from 'eslint-plugin-svelte';
+import prettier from 'eslint-config-prettier';
+import globals from 'globals';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-	baseDirectory: __dirname,
-	recommendedConfig: js.configs.recommended,
-	allConfig: js.configs.all
-});
-
+/** @type {import('eslint').Linter.FlatConfig[]} */
 export default [
+	js.configs.recommended,
+	...ts.configs.recommended,
+	...svelte.configs['flat/recommended'],
+	prettier,
+	...svelte.configs['flat/prettier'],
 	{
-		ignores: [
-			'**/.DS_Store',
-			'**/node_modules',
-			'build',
-			'.svelte-kit',
-			'package',
-			'**/.env',
-			'**/.env.*',
-			'!**/.env.example',
-			'**/pnpm-lock.yaml',
-			'**/package-lock.json',
-			'**/yarn.lock'
-		]
-	},
-	...compat.extends(
-		'eslint:recommended',
-		'plugin:@typescript-eslint/recommended',
-		'plugin:svelte/recommended',
-		'prettier'
-	),
-	{
-		plugins: {
-			'@typescript-eslint': typescriptEslint
-		},
-
 		languageOptions: {
 			globals: {
 				...globals.browser,
 				...globals.node
-			},
-
-			parser: tsParser,
-			ecmaVersion: 'latest',
-			sourceType: 'module',
-
-			parserOptions: {
-				extraFileExtensions: ['.svelte']
 			}
 		}
 	},
 	{
 		files: ['**/*.svelte'],
-
 		languageOptions: {
-			parser: parser,
-			ecmaVersion: 'latest',
-			sourceType: 'script',
-
 			parserOptions: {
-				parser: '@typescript-eslint/parser'
+				parser: ts.parser
 			}
 		}
+	},
+	{
+		ignores: ['build/', '.svelte-kit/', 'dist/']
 	}
 ];

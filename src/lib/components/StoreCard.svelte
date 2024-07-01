@@ -18,9 +18,24 @@
 <div class="wrapper">
 	<div class="banner">
 		<picture>
-			<source width="64" height="64" srcset={`./storelogos/${Number(storeData.storeID) - 1}.avif`} type="image/avif" />
-			<source width="64" height="64" srcset={`./storelogos/${Number(storeData.storeID) - 1}.webp`} type="image/webp" />
-			<img width="64" height="64" src={`./storelogos/${Number(storeData.storeID) - 1}.png`} alt={storeData.storeName} />
+			<source
+				width="64"
+				height="64"
+				srcset={`./storelogos/${Number(storeData.storeID) - 1}.avif`}
+				type="image/avif"
+			/>
+			<source
+				width="64"
+				height="64"
+				srcset={`./storelogos/${Number(storeData.storeID) - 1}.webp`}
+				type="image/webp"
+			/>
+			<img
+				width="64"
+				height="64"
+				src={`./storelogos/${Number(storeData.storeID) - 1}.png`}
+				alt={storeData.storeName}
+			/>
 		</picture>
 	</div>
 	<div class="deals-wrapper">
