@@ -69,14 +69,16 @@
 <div class="wrapper">
 	<div class="wrapper-search">
 		<div>
-			<input
-				class="search-input"
-				placeholder="Search"
-				type="search"
-				name="title"
-				bind:value={title}
-			/>
-			<button class="search-button">Show</button>
+			<form>
+				<input
+					class="search-input"
+					placeholder="Search"
+					type="search"
+					name="title"
+					bind:value={title}
+				/>
+				<button class="search-button" onclick={async () => await refreshDeals()}>Show</button>
+			</form>
 
 			<div class="mobile-filter">
 				<label for="orderBy">Sort: </label>
@@ -329,6 +331,7 @@
 	}
 
 	.search-button {
+		cursor: pointer;
 		display: inline-block;
 		font-weight: bold;
 		padding: 0.1em 1em;
