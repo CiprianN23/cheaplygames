@@ -14,7 +14,7 @@
 
 <header>
 	<div class="logo">
-		<Logo />
+		<a href="/"><Logo /></a>
 	</div>
 
 	<button
@@ -55,6 +55,11 @@
 
 	.logo {
 		margin-left: 1em;
+	}
+
+	.logo a {
+		text-decoration: none;
+		color: #FFF;
 	}
 
 	button {
