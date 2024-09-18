@@ -59,7 +59,7 @@
 
 	.logo a {
 		text-decoration: none;
-		color: #FFF;
+		color: #fff;
 	}
 
 	button {
