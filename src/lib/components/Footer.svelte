@@ -1,6 +1,6 @@
 <script lang="ts">
-	import MdiTwitter from '~icons/mdi/twitter';
-	import MdiGithub from '~icons/mdi/github';
+	import MdiTwitter from 'virtual:icons/mdi/twitter';
+	import MdiGithub from 'virtual:icons/mdi/github';
 
 	const navItems = [
 		{ id: 1, title: 'Home', path: '/' },

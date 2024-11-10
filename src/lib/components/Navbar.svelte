@@ -1,7 +1,7 @@
 <script>
 	import Logo from '$lib/components/Logo.svelte';
-	import BiList from '~icons/bi/list';
-	import BiXLg from '~icons/bi/x-lg';
+	import BiList from 'virtual:icons/bi/list';
+	import BiXLg from 'virtual:icons/bi/x-lg';
 
 	let isMenuActive = $state(false);
 
