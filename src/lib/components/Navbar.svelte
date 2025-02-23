@@ -14,7 +14,7 @@
 
 <header>
 	<div class="logo">
-		<a href="/"><Logo /></a>
+		<a href="/" aria-label="Home page link"><Logo /></a>
 	</div>
 
 	<button
