@@ -1,6 +1,13 @@
 <script setup>
 import { useForm } from '@formwerk/core';
 
+useHead({
+	title: 'CheaplyGames - Contact',
+	meta: [
+		{name: 'description', content: 'Contact us page for CheaplyGames'}
+	]
+});
+
 const runtimeConfig = useRuntimeConfig();
 
 const name = ref('');
@@ -23,33 +30,40 @@ const onSubmit = handleSubmit(async (data) => {
 
 <template>
 
-	<form v-if="!wasSubmitted" method="POST" @submit="onSubmit">
+	<div>
+		<form v-if="!wasSubmitted" method="POST" @submit="onSubmit">
 
-		<div>
-			<h1>CONTACT US</h1>
-		</div>
-
-		<div class="form-wrapper">
-			<div class="field-wrapper">
-				<TextField v-model="name" label="Your name" name="name" placeholder="John Doe" type="text" required />
+			<div>
+				<h1>CONTACT US</h1>
 			</div>
 
-			<div class="field-wrapper">
-				<TextField v-model="email" label="Your email" name="email" placeholder="example@mail.com" type="email"
-					required />
+			<div class="form-wrapper">
+				<div class="field-wrapper">
+					<TextField
+v-model="name" label="Your name" name="name" placeholder="John Doe" type="text"
+						required />
+				</div>
+
+				<div class="field-wrapper">
+					<TextField
+v-model="email" label="Your email" name="email" placeholder="example@mail.com"
+						type="email" required />
+				</div>
 			</div>
-		</div>
 
-		<div class="wrapper-textarea">
-			<TextAreaField v-model="message" label="Your message" name="message" required />
-		</div>
+			<div class="wrapper-textarea">
+				<TextAreaField v-model="message" label="Your message" name="message" required />
+			</div>
 
-		<div class="button">
-			<button :disabled="isSubmitting" type="submit">SEND MESSAGE</button>
-		</div>
-	</form>
+			<div class="button">
+				<button :disabled="isSubmitting" type="submit">SEND MESSAGE</button>
+			</div>
+		</form>
 
-	<h1 v-else class="center">Submission successful!</h1>
+		<h1 v-else class="center">Submission successful!</h1>
+	</div>
+
+
 
 </template>
 

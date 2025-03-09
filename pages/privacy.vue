@@ -1,11 +1,16 @@
-<script setup>
-const date = new Date().toISOString().slice(0, 10);
+<script setup lang="ts">
+useHead({
+    title: 'CheaplyGames - Privacy Policy',
+    meta: [
+        { name: 'description', content: "CheaplyGames's privacy policy" }
+    ]
+});
 </script>
 
 <template>
     <div>
         <h1>Privacy Policy</h1>
-        <p>Last updated: {{ date }}</p>
+        <p>Last updated: 08.03.2025</p>
         <p>
             This Privacy Policy describes Our policies and procedures on the collection, use and disclosure
             of Your information when You use the Service and tells You about Your privacy rights and how the
@@ -19,7 +24,7 @@ const date = new Date().toISOString().slice(0, 10);
                 Generator</NuxtLink>
             .'
         </p>
-        <h1>Interpretation and Definitions</h1>
+        <h2>Interpretation and Definitions</h2>
         <h2>Interpretation</h2>
         <p>
             The words of which the initial letter is capitalized have meanings defined under the following
@@ -108,7 +113,7 @@ const date = new Date().toISOString().slice(0, 10);
                 </p>
             </li>
         </ul>
-        <h1>Collecting and Using Your Personal Data</h1>
+        <h2>Collecting and Using Your Personal Data</h2>
         <h2>Types of Data Collected</h2>
         <h3>Personal Data</h3>
         <p>
@@ -394,7 +399,7 @@ const date = new Date().toISOString().slice(0, 10);
             to use commercially acceptable means to protect Your Personal Data, We cannot guarantee its
             absolute security.
         </p>
-        <h1>Children's Privacy</h1>
+        <h2>Children's Privacy</h2>
         <p>
             Our Service does not address anyone under the age of 13. We do not knowingly collect personally
             identifiable information from anyone under the age of 13. If You are a parent or guardian and
@@ -407,7 +412,7 @@ const date = new Date().toISOString().slice(0, 10);
             requires consent from a parent, We may require Your parent's consent before We collect and use
             that information.
         </p>
-        <h1>Links to Other Websites</h1>
+        <h2>Links to Other Websites</h2>
         <p>
             Our Service may contain links to other websites that are not operated by Us. If You click on a
             third party link, You will be directed to that third party's site. We strongly advise You to
@@ -417,7 +422,7 @@ const date = new Date().toISOString().slice(0, 10);
             We have no control over and assume no responsibility for the content, privacy policies or
             practices of any third party sites or services.
         </p>
-        <h1>Changes to this Privacy Policy</h1>
+        <h2>Changes to this Privacy Policy</h2>
         <p>
             We may update Our Privacy Policy from time to time. We will notify You of any changes by posting
             the new Privacy Policy on this page.
@@ -431,7 +436,7 @@ const date = new Date().toISOString().slice(0, 10);
             You are advised to review this Privacy Policy periodically for any changes. Changes to this
             Privacy Policy are effective when they are posted on this page.
         </p>
-        <h1>Contact Us</h1>
+        <h2>Contact Us</h2>
         <p>If you have any questions about this Privacy Policy, You can contact us:</p>
         <ul>
             <li>

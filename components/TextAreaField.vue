@@ -15,7 +15,7 @@ const {
 <template>
   <div class="field">
     <label v-bind="labelProps">{{ label }}</label>
-    <textarea v-bind="inputProps"></textarea>
+    <textarea v-bind="inputProps"/>
 
     <div v-if="errorMessage" v-bind="errorMessageProps" class="error">
       {{ errorMessage }}

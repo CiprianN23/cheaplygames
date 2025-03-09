@@ -1,46 +1,44 @@
 <script lang="ts" setup>
-const date = new Date().getFullYear();
-
-const navItems = ref([
+const navItems = [
 	{ id: 1, title: 'Home', path: '/' },
 	{ id: 2, title: 'Browse', path: '/browse' },
 	{ id: 3, title: 'Contact', path: '/contact' },
 	{ id: 4, title: 'Privacy Policy', path: '/privacy' },
 	{ id: 5, title: 'Terms & Conditions', path: '/terms' }
-]);
+];
 </script>
 
 <template>
 	<footer>
 		<div class="icon-wrapper">
-			<NuxtLink class="link" to="https://twitter.com/cheaply_games" external>
+			<NuxtLink aria-label="Twitter" class="link" to="https://twitter.com/cheaply_games" external>
 				<Icon name="mdi:twitter" />
 			</NuxtLink>
-			<NuxtLink class="link" to="https://github.com/CiprianN23/cheaplygames" external>
+			<NuxtLink aria-label="Github" class="link" to="https://github.com/CiprianN23/cheaplygames" external>
 				<Icon name="mdi:github" />
 			</NuxtLink>
 		</div>
-		<br />
+		<br >
 
 		<div class="link-wrapper">
 			<ul>
 				<li v-for="item in navItems" :key="item.id">
-					<NuxtLink class="link" :to="item.path"> {{ item.title }}</NuxtLink>
+					<NuxtLink :aria-label="item.title" class="link" :to="item.path"> {{ item.title }}</NuxtLink>
 				</li>
 			</ul>
-			<br />
+			<br >
 			<p>
 				This website uses&nbsp;
 				<NuxtLink class="link" to="https://apidocs.cheapshark.com/" external>CheapShark API</NuxtLink>
 			</p>
-			<br />
+			<br >
 			<p class="font-size-200">
 				The prices listed on this site are correct to the best of our knowledge. CheaplyGames offers
 				no guarantee on accuracy or availability. Copyrights and trademarks are the property of their
 				respective owners.
 			</p>
-			<br />
-			<p class="font-size-200">© {{ date }} CheaplyGames, most cheap games!</p>
+			<br >
+			<p class="font-size-200">© 2025 CheaplyGames, most cheap games!</p>
 			<p class="font-size-200">All rights reserved.</p>
 		</div>
 	</footer>

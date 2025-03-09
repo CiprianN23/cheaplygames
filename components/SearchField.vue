@@ -20,16 +20,14 @@ const {
     <div class="input-wrapper">
       <svg xmlns="http://www.w3.org/2000/svg" fill="#808080" viewBox="0 0 256 256">
         <path
-          d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z">
-        </path>
+          d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"/>
       </svg>
 
-      <input v-bind="inputProps" />
+      <input v-bind="inputProps" >
       <button class="clear-btn" v-bind="clearBtnProps">
         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256">
           <path
-            d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z">
-          </path>
+            d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/>
         </svg>
       </button>
     </div>
@@ -45,11 +43,9 @@ const {
 
 <style scoped>
 .search-field {
-  --color-primary: #10b981;
-  --color-text: #333;
   --color-hint: #666;
   --color-border: #d4d4d8;
-  --color-focus: var(--color-primary);
+  --color-focus: var(--primary);
   --color-error: #f00;
   --color-hover: #eee;
 
@@ -58,7 +54,7 @@ const {
     margin-bottom: 0.25rem;
     font-size: 14px;
     font-weight: 500;
-    color: var(--color-text);
+    color: var(--text);
   }
 
   .hint {
@@ -85,7 +81,7 @@ const {
     width: max-content;
     padding: 0.4rem;
     font-size: 13px;
-    color: var(--color-text);
+    color: var(--text);
     border: 1px solid var(--color-border);
     border-radius: 6px;
     transition: border-color 0.3s ease;
@@ -112,7 +108,7 @@ const {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-text);
+    color: var(--text);
     cursor: pointer;
   }
 

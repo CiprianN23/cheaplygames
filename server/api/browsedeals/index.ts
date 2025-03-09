@@ -1,4 +1,4 @@
-import { GameDeal } from "~/shared/types/deals";
+import type { GameDeal } from "~/shared/types/deals";
 import type { H3Event } from "h3";
 
 export default cachedEventHandler(

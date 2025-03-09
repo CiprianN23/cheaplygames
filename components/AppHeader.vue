@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const navItems = ref([
+const navItems = [
 	{ id: 1, title: 'Home', path: '/' },
 	{ id: 2, title: 'Browse', path: '/browse' },
 	{ id: 3, title: 'Contact', path: '/contact' }
-]);
+];
 
 const isMenuActive = ref(false);
 </script>
@@ -14,21 +14,21 @@ const isMenuActive = ref(false);
 <template>
 	<header>
 		<div class="logo">
-			<NuxtLink class="link" title="home" to="/">
+			<NuxtLink aria-label="Logo with home link" class="link" title="home" to="/">
 				<Icon name="Logo" />
 			</NuxtLink>
 		</div>
 
-		<button aria-controls="primary-navigation" :aria-expanded="isMenuActive" @click="isMenuActive = !isMenuActive">
+		<button type="button" aria-controls="primary-navigation" :aria-expanded="isMenuActive" @click="isMenuActive = !isMenuActive">
 			<span class="sr-only">Menu</span>
-			<Icon name="bi:x-lg" v-if="isMenuActive" />
-			<Icon name="bi:list" v-else />
+			<Icon v-if="isMenuActive" name="bi:x-lg"  />
+			<Icon v-else name="bi:list"  />
 		</button>
 
 		<nav>
 			<ul id="primary-navigation" :data-visible="isMenuActive">
 				<li v-for="item in navItems" :key="item.id">
-					<NuxtLink class="link" @click="isMenuActive = false" :to="item.path"> {{ item.title }}</NuxtLink>
+					<NuxtLink :aria-label="item.title" class="link" :to="item.path" @click="isMenuActive = false"> {{ item.title }}</NuxtLink>
 				</li>
 			</ul>
 		</nav>

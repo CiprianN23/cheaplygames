@@ -10,12 +10,10 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@formwerk/core": "^0.8.2",
-    "@nuxt/icon": "1.10.3",
+    "@formwerk/core": "^0.8.3",
+    "@nuxt/icon": "^1.10.3",
     "@nuxt/image": "^1.9.0",
-    "@nuxtjs/seo": "2.2.0",
-    "ipx": "^3.0.1",
-    "nuxt": "^3.15.4",
+    "nuxt": "^3.16.0",
     "vue": "latest",
     "vue-router": "latest"
   },
@@ -25,6 +23,13 @@
     "sharp"
   ],
   "devDependencies": {
-    "@iconify-json/bi": "^1.2.2"
+    "@iconify-json/bi": "^1.2.2",
+    "@iconify-json/mdi": "^1.2.3",
+    "@nuxt/eslint": "^1.2.0",
+    "@nuxtjs/html-validator": "^2.1.0",
+    "@nuxtjs/robots": "^5.2.6",
+    "@nuxtjs/sitemap": "^7.2.7",
+    "@vueuse/nuxt": "^12.8.2",
+    "nuxt-link-checker": "^4.1.1"
   }
 }

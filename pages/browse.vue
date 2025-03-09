@@ -1,15 +1,24 @@
 <script lang="ts" setup>
-import type { ApiResponse, GameDeal } from '~/shared/types/deals';
+import type { ApiResponse } from '~/shared/types/deals';
+import { formatTimeAgo } from '@vueuse/core'
 const route = useRoute();
 const routeQuery = computed(() => route.query)
 
-const storeIDParam = ref(route.query.storeID ? route.query.storeID : undefined)
-let title = ref<string>();
-let sortBy = ref('Deal Rating');
-let desc = ref<number>();
-let currentPage = ref<number>(0);
-let selectedValue = ref('Deal Rating');
-let isDisabled = ref(false);
+useHead({
+	title: 'CheaplyGames - Browse',
+	meta: [
+		{ name: 'description', content: 'Browse and filter on going game deals from different online game stores' }
+	]
+});
+
+const storeNames = ['Unused', 'Steam', 'GamersGate', 'GreenManGaming', 'Amazon', 'GameStop', 'Direct2Drive', 'GOG', 'Origin', 'Get Games', 'Shiny Loot', 'Humble Store', 'Desura', 'Uplay', 'IndieGameStand', 'Fanatical', 'Gamesrocket', 'Games Republic', 'SilaGames', 'Playfield', 'ImperialGames', 'WinGameStore', 'FunStockDigital', 'GameBillet', 'Voidu', 'Epic Games Store', 'Razer Game Store', 'Gamesplanet', 'Gamesload', '2Game', 'IndieGala', 'Blizzard Shop', 'AllYouPlay', 'DLGamer', 'Noctre', 'DreamGame'];
+
+const storeIDParam = ref(route.query.storeid ? route.query.storeid : undefined)
+const title = ref<string>();
+const sortBy = ref('Deal Rating');
+const desc = ref<number>();
+const currentPage = ref<number>(0);
+const isDisabled = ref(false);
 
 const { data, refresh } = await useFetch<ApiResponse>(`/api/browsedeals`, { query: routeQuery });
 
@@ -34,9 +43,9 @@ async function refreshDeals() {
 	<div class="table-wrapper">
 		<div class="wrapper-search">
 			<div>
-				<form>
+				<form aria-label="Game title search form">
 					<SearchField label="Game Title" name="title" :value="title" />
-					<button class="search-button" @click="refreshDeals()">Show</button>
+					<button type="submit" class="search-button" @click="refreshDeals()">Show</button>
 				</form>
 			</div>
 		</div>
@@ -44,28 +53,40 @@ async function refreshDeals() {
 		<table>
 			<thead>
 				<tr>
-					<th @click="sortBy = 'Store', desc = desc === 0 ? 1 : 0, refreshDeals()"
-						:class="{ headerSortDown: desc === 0 && sortBy === 'Store', headerSortUp: desc === 1 && sortBy === 'Store' }">
+					<th
+scope="col"
+						:class="{ headerSortDown: desc === 0 && sortBy === 'Store', headerSortUp: desc === 1 && sortBy === 'Store' }"
+						@click="sortBy = 'Store', desc = desc === 0 ? 1 : 0, refreshDeals()">
 						Store
 					</th>
-					<th @click="sortBy = 'Savings', desc = desc === 0 ? 1 : 0, refreshDeals()"
-						:class="{ headerSortDown: desc === 0 && sortBy === 'Savings', headerSortUp: desc === 1 && sortBy === 'Savings' }">
+					<th
+scope="col"
+						:class="{ headerSortDown: desc === 0 && sortBy === 'Savings', headerSortUp: desc === 1 && sortBy === 'Savings' }"
+						@click="sortBy = 'Savings', desc = desc === 0 ? 1 : 0, refreshDeals()">
 						Savings
 					</th>
-					<th @click="sortBy = 'Price', desc = desc === 0 ? 1 : 0, refreshDeals()"
-						:class="{ headerSortDown: desc === 0 && sortBy === 'Price', headerSortUp: desc === 1 && sortBy === 'Price' }">
+					<th
+scope="col"
+						:class="{ headerSortDown: desc === 0 && sortBy === 'Price', headerSortUp: desc === 1 && sortBy === 'Price' }"
+						@click="sortBy = 'Price', desc = desc === 0 ? 1 : 0, refreshDeals()">
 						Price
 					</th>
-					<th @click="sortBy = 'Title', desc = desc === 0 ? 1 : 0, refreshDeals()"
-						:class="{ headerSortDown: desc === 0 && sortBy === 'Title', headerSortUp: desc === 1 && sortBy === 'Title' }">
+					<th
+scope="col"
+						:class="{ headerSortDown: desc === 0 && sortBy === 'Title', headerSortUp: desc === 1 && sortBy === 'Title' }"
+						@click="sortBy = 'Title', desc = desc === 0 ? 1 : 0, refreshDeals()">
 						Title
 					</th>
-					<th @click="sortBy = 'Deal Rating', desc = desc === 0 ? 1 : 0, refreshDeals()"
-						:class="{ headerSortDown: desc === 0 && sortBy === 'Deal Rating', headerSortUp: desc === 1 && sortBy === 'Deal Rating' }">
+					<th
+scope="col"
+						:class="{ headerSortDown: desc === 0 && sortBy === 'Deal Rating', headerSortUp: desc === 1 && sortBy === 'Deal Rating' }"
+						@click="sortBy = 'Deal Rating', desc = desc === 0 ? 1 : 0, refreshDeals()">
 						Deal Rating
 					</th>
-					<th @click="sortBy = 'Recent', desc = desc === 0 ? 1 : 0, refreshDeals()"
-						:class="{ headerSortDown: desc === 0 && sortBy === 'Recent', headerSortUp: desc === 1 && sortBy === 'Recent' }">
+					<th
+scope="col"
+						:class="{ headerSortDown: desc === 0 && sortBy === 'Recent', headerSortUp: desc === 1 && sortBy === 'Recent' }"
+						@click="sortBy = 'Recent', desc = desc === 0 ? 1 : 0, refreshDeals()">
 						Recent
 					</th>
 				</tr>
@@ -73,8 +94,10 @@ async function refreshDeals() {
 			<tbody>
 				<tr v-for="deal in data?.data" :key="deal.dealID">
 					<td data-cell="store">
-						<NuxtImg format="webp" width="16" height="16" quality="80"
-							:src="`/storeicons/${Number(deal.storeID) - 1}.png`" :placeholder="[16, 16, 20, 5]" />
+						<NuxtImg
+:alt="storeNames[Number(deal.storeID)]" format="webp" width="16" height="16"
+							quality="80" :src="`/storeicons/${Number(deal.storeID) - 1}.png`"
+							:placeholder="[16, 16, 20, 5]" />
 					</td>
 					<td data-cell="savings">
 						{{ Math.round(Number(deal.savings)) }}%
@@ -86,32 +109,35 @@ async function refreshDeals() {
 						</span>
 					</td>
 					<td data-cell="title">
-						<NuxtLink :to="`https://www.cheapshark.com/redirect?dealID=${deal.dealID}`">
+						<NuxtLink :to="`https://www.cheapshark.com/redirect?dealID=${deal.dealID}`" external>
 							{{ deal.title }}
 						</NuxtLink>
 					</td>
 					<td data-cell="deal rating">{{ deal.dealRating }}</td>
 					<td data-cell="last change">
-						<DealLastChanged :time="new Date(deal.lastChange * 1000)" />
+						<p>{{ formatTimeAgo(new Date(deal.lastChange * 1000)) }}</p>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 
-		<nav>
+		<nav aria-label="Page naviggation">
 			<p class="page-count">
 				Page {{ currentPage + 1 }} of {{ Number(data?.totalPages) + 1 }}
 			</p>
 			<ul id="pagination">
 				<li v-if="currentPage > 0">
-					<button :disabled=isDisabled :class="{ disabled: isDisabled }"
+					<button
+aria-label="Previous page" type="button" :disabled=isDisabled
+						:class="{ disabled: isDisabled }"
 						@click="(isDisabled = true), currentPage--, refreshDeals(), (isDisabled = false)">
 						&#8592; Prev
 					</button>
 				</li>
 
 				<li v-if="currentPage < Number(data?.totalPages)">
-					<button :disabled=isDisabled :class="{ disabled: isDisabled }"
+					<button
+aria-label="Next page" type="button" :disabled=isDisabled :class="{ disabled: isDisabled }"
 						@click="(isDisabled = true), currentPage++, refreshDeals(), (isDisabled = false)">
 						{{ ' ' }}
 						Next &rarr;

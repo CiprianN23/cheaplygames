@@ -1,15 +1,26 @@
 <script setup lang="ts">
-const visibleShops = ref([1, 3, 7, 11, 15, 21, 23, 25, 27]);
+const visibleShops = [1, 3, 7, 11, 15, 21, 23, 25, 27];
+
+useHead({
+	title: 'CheaplyGames - The place to find game deals',
+	meta: [
+		{name: 'description', content: 'Summary of popular on going deals from popular online game stores'}
+	]
+});
 </script>
 
 <template>
-  <div class="store-wrapper">
-    <StoreCard :storeid="shop" v-for="shop in visibleShops" />
+
+  <div>
+    <div class="store-wrapper">
+      <StoreCard v-for="shop in visibleShops" :key="shop" :storeid="shop"/>
+    </div>
+
+    <div class="browse-more">
+      <NuxtLink class="link" to="/browse">Browse</NuxtLink> for more deals!
+    </div>
   </div>
 
-  <div class="browse-more">
-    <NuxtLink class="link" to="/browse">Browse</NuxtLink> for more deals!
-  </div>
 </template>
 
 <style scoped>
