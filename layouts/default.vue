@@ -5,7 +5,10 @@ import '~/assets/css/global.css'
 </script>
 
 <template>
-    <AppHeader />
-    <slot />
-    <AppFooter />
+    <div>
+        <AppHeader />
+        <slot />
+        <LazyAppFooter hydrate-never/>
+    </div>
+
 </template>
