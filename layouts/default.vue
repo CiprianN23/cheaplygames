@@ -8,7 +8,7 @@ import '~/assets/css/global.css'
     <div>
         <AppHeader />
         <slot />
-        <LazyAppFooter hydrate-never/>
+        <AppFooter/>
     </div>
 
 </template>
