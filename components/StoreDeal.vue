@@ -24,9 +24,9 @@ const gameTitle = truncateString(deal.title, MAX_GAME_TITLE_LENGTH);
 			</NuxtLink>
 		</div>
 		<div>
-			<s v-if="deal.isOnSale === '1'">{{ deal.normalPrice }}</s>
+			<s v-if="deal.isOnSale === '1'">{{ deal.normalPrice }}$</s>
 
-			<span>{{ deal.salePrice }}</span>
+			<span>{{ deal.salePrice }}$</span>
 		</div>
 	</div>
 </template>
