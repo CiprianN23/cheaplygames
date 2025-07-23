@@ -10,22 +10,23 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@formwerk/core": "^0.11.2",
+    "@formwerk/core": "^0.11.4",
     "@nuxt/icon": "^1.15.0",
     "@nuxt/image": "^1.10.0",
-    "nuxt": "^4.0.0",
+    "nuxt": "^4.0.1",
     "vue": "latest",
     "vue-router": "latest"
   },
   "trustedDependencies": [
     "@parcel/watcher",
     "esbuild",
-    "sharp"
+    "sharp",
+    "unrs-resolver"
   ],
   "devDependencies": {
     "@iconify-json/bi": "^1.2.4",
     "@iconify-json/mdi": "^1.2.3",
-    "@nuxt/eslint": "^1.5.2",
+    "@nuxt/eslint": "^1.7.0",
     "@nuxtjs/html-validator": "^2.1.0",
     "@nuxtjs/robots": "^5.4.0",
     "@nuxtjs/sitemap": "^7.4.3",
