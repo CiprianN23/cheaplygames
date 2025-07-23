@@ -18,7 +18,7 @@ const { data } = await useFetch<GameDeal[]>(`/api/storedeal/${storeid}`);
 		<div class="deals-wrapper">
 			<StoreDeal v-for="deal in data" :key="deal.dealID" :deal="deal" />
 			<NuxtLink
-:aria-label="`Browse ${storeNames[storeid]} deals`" :to="`/browse?storeId=${storeid}`"
+:aria-label="`Browse ${storeNames[storeid]} deals`" :to="`/browse?storeID=${storeid}`"
 				class="btn">View all deals</NuxtLink>
 		</div>
 	</div>
