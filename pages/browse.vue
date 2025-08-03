@@ -13,7 +13,7 @@ useHead({
 
 const storeNames = ['Unused', 'Steam', 'GamersGate', 'GreenManGaming', 'Amazon', 'GameStop', 'Direct2Drive', 'GOG', 'Origin', 'Get Games', 'Shiny Loot', 'Humble Store', 'Desura', 'Uplay', 'IndieGameStand', 'Fanatical', 'Gamesrocket', 'Games Republic', 'SilaGames', 'Playfield', 'ImperialGames', 'WinGameStore', 'FunStockDigital', 'GameBillet', 'Voidu', 'Epic Games Store', 'Razer Game Store', 'Gamesplanet', 'Gamesload', '2Game', 'IndieGala', 'Blizzard Shop', 'AllYouPlay', 'DLGamer', 'Noctre', 'DreamGame'];
 
-const storeIDParam = ref(route.query.storeid ? route.query.storeid : undefined)
+const storeIDParam = ref(route.query.storeID ? route.query.storeID : undefined)
 const title = ref<string>();
 const sortBy = ref('Deal Rating');
 const desc = ref<number>();
