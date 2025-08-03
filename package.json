@@ -12,8 +12,8 @@
   "dependencies": {
     "@formwerk/core": "^0.11.4",
     "@nuxt/icon": "^1.15.0",
-    "@nuxt/image": "^1.10.0",
-    "nuxt": "^4.0.1",
+    "@nuxt/image": "^1.11.0",
+    "nuxt": "^4.0.2",
     "vue": "latest",
     "vue-router": "latest"
   },
@@ -26,11 +26,11 @@
   "devDependencies": {
     "@iconify-json/bi": "^1.2.4",
     "@iconify-json/mdi": "^1.2.3",
-    "@nuxt/eslint": "^1.7.0",
+    "@nuxt/eslint": "^1.7.1",
     "@nuxtjs/html-validator": "^2.1.0",
     "@nuxtjs/robots": "^5.4.0",
     "@nuxtjs/sitemap": "^7.4.3",
-    "@vueuse/nuxt": "^13.5.0",
+    "@vueuse/nuxt": "^13.6.0",
     "nuxt-link-checker": "^4.3.1"
   }
 }
