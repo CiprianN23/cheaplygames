@@ -10,8 +10,8 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@formwerk/core": "^0.11.4",
-    "@nuxt/icon": "^1.15.0",
+    "@formwerk/core": "^0.11.6",
+    "@nuxt/icon": "^2.0.0",
     "@nuxt/image": "^1.11.0",
     "nuxt": "^4.0.3",
     "vue": "latest",
@@ -24,13 +24,13 @@
     "unrs-resolver"
   ],
   "devDependencies": {
-    "@iconify-json/bi": "^1.2.4",
+    "@iconify-json/bi": "^1.2.6",
     "@iconify-json/mdi": "^1.2.3",
-    "@nuxt/eslint": "^1.8.0",
+    "@nuxt/eslint": "^1.9.0",
     "@nuxtjs/html-validator": "^2.1.0",
-    "@nuxtjs/robots": "^5.4.0",
+    "@nuxtjs/robots": "^5.5.0",
     "@nuxtjs/sitemap": "^7.4.3",
-    "@vueuse/nuxt": "^13.6.0",
+    "@vueuse/nuxt": "^13.7.0",
     "nuxt-link-checker": "^4.3.1"
   }
 }
