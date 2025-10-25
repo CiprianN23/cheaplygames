@@ -13,7 +13,7 @@
     "@formwerk/core": "^0.14.1",
     "@nuxt/icon": "^2.1.0",
     "@nuxt/image": "^1.11.0",
-    "nuxt": "^4.1.3",
+    "nuxt": "^4.2.0",
     "vue": "latest",
     "vue-router": "latest"
   },
