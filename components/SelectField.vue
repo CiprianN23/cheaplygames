@@ -126,7 +126,6 @@ const {
 
     /** CSS Anchor Positioning */
     position-anchor: v-bind('triggerId');
-    inset-area: bottom center;
     position-area: bottom center;
     position-try-fallbacks: flip-block,
     flip-inline,

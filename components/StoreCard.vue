@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { GameDeal } from '~/shared/types/deals';
 
-const { storeid } = defineProps(['storeid']);
+const { storeid } = defineProps<{storeid: number}>();
 
 const storeNames = ['Unused', 'Steam', 'GamersGate', 'GreenManGaming', 'Amazon', 'GameStop', 'Direct2Drive', 'GOG', 'Origin', 'Get Games', 'Shiny Loot', 'Humble Store', 'Desura', 'Uplay', 'IndieGameStand', 'Fanatical', 'Gamesrocket', 'Games Republic', 'SilaGames', 'Playfield', 'ImperialGames', 'WinGameStore', 'FunStockDigital', 'GameBillet', 'Voidu', 'Epic Games Store', 'Razer Game Store', 'Gamesplanet', 'Gamesload', '2Game', 'IndieGala', 'Blizzard Shop', 'AllYouPlay', 'DLGamer', 'Noctre', 'DreamGame'];
 
