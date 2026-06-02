@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@formwerk/core": "^0.14.4",
-    "@nuxt/icon": "^2.2.2",
+    "@nuxt/icon": "^2.2.3",
     "@nuxt/image": "^2.0.0",
-    "nuxt": "^4.4.6",
+    "nuxt": "^4.4.7",
     "vue": "latest",
     "vue-router": "latest"
   },
